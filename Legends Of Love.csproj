@@ -61,6 +61,7 @@
     <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\Player\Player.cs" />
     <Compile Include="Entities\Player\Player.designer.cs" />
+    <Compile Include="Entities\Player\PlayerAnimation.cs" />
     <Compile Include="Entities\Player\PlayerInput.cs" />
     <Compile Include="Entities\Sword\Sword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

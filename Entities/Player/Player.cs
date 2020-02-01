@@ -7,44 +7,46 @@ namespace LegendsOfLove.Entities.Player {
         [Export] public bool Frozen { get; set; }
         [Export] public bool UpdateAnimation { get; set; } = true;
 
+        protected Vector2 Facing { get; set; } = Vector2.Right;
+
         public void Freeze() => Frozen = true;
         public void Unfreeze() => Frozen = false;
         
         protected PlayerInput PlayerInput => new PlayerInput();
+        protected Vector2 InputMoveVector => Frozen ? Vector2.Zero : PlayerInput.MoveVector;
 
         public override void _Process(float delta) {
-            var moveVector = Frozen ? Vector2.Zero : PlayerInput.MoveVector;
-            MoveAndSlide(moveVector * Speed);
+            MoveAndSlide(InputMoveVector * Speed);
 
-            if (UpdateAnimation) {
-                if (moveVector.x < 0) {
-                    Sprite.Scale = new Vector2(-1, 1);
-                }
-                else if (moveVector.x > 0) {
-                    Sprite.Scale = new Vector2(1, 1);
-                }
-
-                if (moveVector.Length() <= 0) {
-                    PlayAnimation("Idle");
-                }
-                else {
-                    PlayAnimation("Walk");
-                }
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (InputMoveVector.Length() == 1) {
+                Facing = InputMoveVector;
             }
+            UpdatePlayerAnimation();
 
             base._Process(delta);
         }
 
-        protected void PlayAnimation(string animationName) {
-            if (AnimationPlayer.CurrentAnimation == animationName) return;
-            AnimationPlayer.Play(animationName);
+        protected void UpdatePlayerAnimation() {
+            if (!UpdateAnimation) return;
+            if (InputMoveVector.Length() > 0) {
+                if (TestMove(Transform, Facing)) {
+                    SetAnimation("Push");
+                    return;
+                }
+            }
+            SetAnimation(InputMoveVector.Length() > 0 ? "Walk" : "Idle");
+        }
+
+        protected void SetAnimation(string animationName) {
+            PlayerAnimation.SetAnimation(animationName, Facing);
         }
 
         public void _on_ItemDetector_body_entered(Node other) {
             if (!(other is IItemPickup itemPickup)) return;
             
             itemPickup.OnPickup(this);
-            AnimationPlayer.Play("GetSword");
+            PlayerAnimation.Play("GetSword");
             other.QueueFree();
         }
     }

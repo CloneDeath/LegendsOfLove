@@ -2,6 +2,6 @@
 
 namespace LegendsOfLove.Entities.Player {
 	public partial class Player {
-		protected AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
+		protected PlayerAnimation PlayerAnimation => GetNode<PlayerAnimation>("PlayerAnimation");
 	}
 }
