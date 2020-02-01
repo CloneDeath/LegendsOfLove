@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Engine/GridAlignedCamera/GridAlignedCamera.cs" type="Script" id=1]
 [ext_resource path="res://Engine/GridAlignedCamera/DitherGuide.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 36, 24 )
 
 [sub_resource type="SegmentShape2D" id=1]
 b = Vector2( 72, 0 )
@@ -33,7 +36,7 @@ tracks/0/keys = {
 "values": [ 8, 16 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "FadeOut"
 length = 0.5
 tracks/0/type = "value"
@@ -49,7 +52,7 @@ tracks/0/keys = {
 "values": [ 0, 8 ]
 }
 
-[sub_resource type="Shader" id=6]
+[sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
 
 uniform int level = 1;
@@ -63,8 +66,8 @@ void fragment(){
 	COLOR = texture(dither, vec2(float(dt), float(level % 16))/16.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = SubResource( 6 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 shader_param/level = 16
 shader_param/dither = ExtResource( 2 )
 
@@ -77,6 +80,14 @@ script = ExtResource( 1 )
 anchor_mode = 0
 current = true
 editor_draw_screen = false
+
+[node name="ContentsArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContentsArea2D"]
+position = Vector2( 36, 24 )
+shape = SubResource( 9 )
 
 [node name="TopArea2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -106,16 +117,17 @@ shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 5 )
-anims/FadeOut = SubResource( 8 )
+anims/FadeOut = SubResource( 6 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 7 )
+material = SubResource( 8 )
 margin_right = 72.0
 margin_bottom = 48.0
 color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="body_exited" from="ContentsArea2D" to="." method="_on_ContentsArea2D_body_exited"]
 [connection signal="body_entered" from="TopArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( 0, -1 ) ]]
 [connection signal="body_entered" from="BottomArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( 0, 1 ) ]]
 [connection signal="body_entered" from="LeftArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( -1, 0 ) ]]

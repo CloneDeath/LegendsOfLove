@@ -56,6 +56,10 @@ namespace LegendsOfLove.Entities.Player {
             other.QueueFree();
         }
 
+        public new void SetGlobalPosition(Vector2 destination) {
+            GlobalPosition = destination;
+        }
+
         public void TeleportTo(Vector2 destination) {
             TeleportTween.ResetAll();
 
@@ -66,6 +70,7 @@ namespace LegendsOfLove.Entities.Player {
             TeleportTween.InterpolateCallback(Camera, 0.5f, "FadeIn");
             
             TeleportTween.InterpolateCallback(this, 1.0f, "Unfreeze");
+            TeleportTween.Start();
         }
     }
 }

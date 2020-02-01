@@ -48,5 +48,16 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
             player.Freeze();
             Tween.Start();
         }
+
+        public void FadeIn() => AnimationPlayer.Play("FadeIn");
+        public void FadeOut() => AnimationPlayer.Play("FadeOut");
+
+        public void _on_ContentsArea2D_body_exited(Node body) {
+            if (body is Player player) {
+                var playerPosition = player.GlobalPosition;
+                var playerCell = new Vector2(playerPosition.x / 72, playerPosition.y / 48).Floor();
+                GlobalPosition = playerCell * new Vector2(72, 48);
+            }
+        }
     }
 }
