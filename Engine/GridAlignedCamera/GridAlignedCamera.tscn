@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Engine/GridAlignedCamera/GridAlignedCamera.cs" type="Script" id=1]
+[ext_resource path="res://Engine/GridAlignedCamera/DitherGuide.png" type="Texture" id=2]
 
 [sub_resource type="SegmentShape2D" id=1]
 b = Vector2( 72, 0 )
@@ -15,6 +16,25 @@ b = Vector2( 0, 48 )
 [sub_resource type="SegmentShape2D" id=4]
 a = Vector2( 72, 0 )
 b = Vector2( 72, 48 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform int level = 1;
+uniform sampler2D dither;
+
+void fragment(){
+	int x = int(int(floor(UV.x * 72.0)) % 4);
+	int y = int(int(floor(UV.y * 48.0)) % 4);
+	int dt = x + (y * 4);
+	
+	COLOR = texture(dither, vec2(float(dt), float(level % 16))/16.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/level = 0
+shader_param/dither = ExtResource( 2 )
 
 [node name="GridAlignedCamera" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,6 +69,17 @@ collision_layer = 4
 shape = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 6 )
+margin_right = 72.0
+margin_bottom = 48.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="TopArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( 0, -1 ) ]]
 [connection signal="body_entered" from="BottomArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( 0, 1 ) ]]
 [connection signal="body_entered" from="LeftArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( -1, 0 ) ]]
