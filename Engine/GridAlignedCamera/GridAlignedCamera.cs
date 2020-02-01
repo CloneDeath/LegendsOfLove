@@ -25,7 +25,6 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
             if (!(body is Player player)) return;
             if (!CanTransition) {
                 TransitionQueue.Enqueue(new TransitionAction(player, direction));
-                GD.Print("corner case");
                 return;
             }
 
