@@ -2,10 +2,18 @@
 
 namespace LegendsOfLove.Entities.Player {
 	public class PlayerInput {
-		public bool MoveLeft => Input.IsActionPressed("move_left");
-		public bool MoveRight => Input.IsActionPressed("move_right");
-		public bool MoveUp => Input.IsActionPressed("move_up");
-		public bool MoveDown => Input.IsActionPressed("move_down");
+		private readonly bool _frozen;
+
+		public PlayerInput(bool frozen) {
+			_frozen = frozen;
+		}
+		
+		public bool MoveLeft => !_frozen && Input.IsActionPressed("move_left");
+		public bool MoveRight => !_frozen && Input.IsActionPressed("move_right");
+		public bool MoveUp => !_frozen && Input.IsActionPressed("move_up");
+		public bool MoveDown => !_frozen && Input.IsActionPressed("move_down");
+
+		public bool Attack => !_frozen && Input.IsActionJustPressed("attack");
 
 		public Vector2 MoveVector {
 			get {

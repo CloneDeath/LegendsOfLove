@@ -12,15 +12,14 @@ namespace LegendsOfLove.Entities.Player {
         public void Freeze() => Frozen = true;
         public void Unfreeze() => Frozen = false;
         
-        protected PlayerInput PlayerInput => new PlayerInput();
-        protected Vector2 InputMoveVector => Frozen ? Vector2.Zero : PlayerInput.MoveVector;
+        protected PlayerInput PlayerInput => new PlayerInput(Frozen);
 
         public override void _Process(float delta) {
-            MoveAndSlide(InputMoveVector * Speed);
+            MoveAndSlide(PlayerInput.MoveVector * Speed);
 
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (InputMoveVector.Length() == 1) {
-                Facing = InputMoveVector;
+            if (PlayerInput.MoveVector.Length() == 1) {
+                Facing = PlayerInput.MoveVector;
             }
             UpdatePlayerAnimation();
 
@@ -29,13 +28,17 @@ namespace LegendsOfLove.Entities.Player {
 
         protected void UpdatePlayerAnimation() {
             if (!UpdateAnimation) return;
-            if (InputMoveVector.Length() > 0) {
+            if (PlayerInput.Attack && HasSword) {
+                SetAnimation("Attack");
+                return;
+            }
+            if (PlayerInput.MoveVector.Length() > 0) {
                 if (TestMove(Transform, Facing)) {
                     SetAnimation("Push");
                     return;
                 }
             }
-            SetAnimation(InputMoveVector.Length() > 0 ? "Walk" : "Idle");
+            SetAnimation(PlayerInput.MoveVector.Length() > 0 ? "Walk" : "Idle");
         }
 
         protected void SetAnimation(string animationName) {
