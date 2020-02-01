@@ -1,7 +1,10 @@
 using Godot;
+using LegendsOfLove.Engine.GridAlignedCamera;
 
 namespace LegendsOfLove.Entities.Player {
     public partial class Player : BaseEntity.BaseEntity {
+        protected GridAlignedCamera Camera => GetTree().GetNodesInGroup("camera")[0] as GridAlignedCamera;
+        
         [Export] public bool HasSword { get; set; }
         [Export] public float Speed = 16.0f;
         [Export] public bool Frozen { get; set; }
@@ -51,6 +54,18 @@ namespace LegendsOfLove.Entities.Player {
             itemPickup.OnPickup(this);
             PlayerAnimation.Play("GetSword");
             other.QueueFree();
+        }
+
+        public void TeleportTo(Vector2 destination) {
+            TeleportTween.ResetAll();
+
+            TeleportTween.InterpolateCallback(this, 0f, "Freeze");
+            TeleportTween.InterpolateCallback(Camera, 0, "FadeOut");
+            
+            TeleportTween.InterpolateCallback(this, 0.5f, "SetGlobalPosition", destination);
+            TeleportTween.InterpolateCallback(Camera, 0.5f, "FadeIn");
+            
+            TeleportTween.InterpolateCallback(this, 1.0f, "Unfreeze");
         }
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Engine/GridAlignedCamera/GridAlignedCamera.cs" type="Script" id=1]
 [ext_resource path="res://Engine/GridAlignedCamera/DitherGuide.png" type="Texture" id=2]
@@ -17,7 +17,39 @@ b = Vector2( 0, 48 )
 a = Vector2( 72, 0 )
 b = Vector2( 72, 48 )
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Animation" id=5]
+resource_name = "FadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/level")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 8, 16 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:material:shader_param/level")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 8 ]
+}
+
+[sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
 
 uniform int level = 1;
@@ -31,12 +63,14 @@ void fragment(){
 	COLOR = texture(dither, vec2(float(dt), float(level % 16))/16.0);
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
-shader_param/level = 0
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/level = 16
 shader_param/dither = ExtResource( 2 )
 
-[node name="GridAlignedCamera" type="Node2D"]
+[node name="GridAlignedCamera" type="Node2D" groups=[
+"camera",
+]]
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -71,9 +105,11 @@ shape = SubResource( 4 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FadeIn = SubResource( 5 )
+anims/FadeOut = SubResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 6 )
+material = SubResource( 7 )
 margin_right = 72.0
 margin_bottom = 48.0
 color = Color( 1, 1, 1, 0 )

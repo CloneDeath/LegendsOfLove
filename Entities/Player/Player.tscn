@@ -5,7 +5,7 @@
 [ext_resource path="res://Entities/Player/Player.cs" type="Script" id=3]
 [ext_resource path="res://Entities/Player/PlayerAnimation.cs" type="Script" id=4]
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=1]
 resource_name = "Attack_Down"
 length = 0.35
 step = 0.05
@@ -58,7 +58,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=2]
 resource_name = "Attack_Left"
 length = 0.35
 step = 0.05
@@ -111,7 +111,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=3]
 resource_name = "Attack_Right"
 length = 0.35
 step = 0.05
@@ -164,7 +164,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=4]
 resource_name = "Attack_Up"
 length = 0.35
 step = 0.05
@@ -217,8 +217,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "GetSword"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -268,8 +267,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle_Down"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -295,8 +293,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Idle_Left"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -322,7 +319,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -348,8 +345,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Idle_Up"
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -375,8 +371,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Push_Down"
+[sub_resource type="Animation" id=10]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -404,8 +399,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Push_Left"
+[sub_resource type="Animation" id=11]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -433,7 +427,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -461,8 +455,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "Push_Up"
+[sub_resource type="Animation" id=13]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -490,8 +483,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "Walk_Down"
+[sub_resource type="Animation" id=14]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -519,8 +511,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "Walk_Left"
+[sub_resource type="Animation" id=15]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -548,7 +539,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=16]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -576,8 +567,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "Walk_Up"
+[sub_resource type="Animation" id=17]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -605,10 +595,12 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=18]
 radius = 3.0
 
-[node name="Player" instance=ExtResource( 1 )]
+[node name="Player" groups=[
+"player",
+] instance=ExtResource( 1 )]
 collision_mask = 6
 script = ExtResource( 3 )
 
@@ -619,28 +611,30 @@ hframes = 31
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="." index="2"]
 autoplay = "Idle_Right"
-anims/Attack_Down = SubResource( 16 )
-anims/Attack_Left = SubResource( 17 )
-anims/Attack_Right = SubResource( 15 )
-anims/Attack_Up = SubResource( 18 )
-anims/GetSword = SubResource( 1 )
-anims/Idle_Down = SubResource( 2 )
-anims/Idle_Left = SubResource( 3 )
-anims/Idle_Right = SubResource( 4 )
-anims/Idle_Up = SubResource( 5 )
-anims/Push_Down = SubResource( 6 )
-anims/Push_Left = SubResource( 7 )
-anims/Push_Right = SubResource( 8 )
-anims/Push_Up = SubResource( 9 )
-anims/Walk_Down = SubResource( 10 )
-anims/Walk_Left = SubResource( 11 )
-anims/Walk_Right = SubResource( 12 )
-anims/Walk_Up = SubResource( 13 )
+anims/Attack_Down = SubResource( 1 )
+anims/Attack_Left = SubResource( 2 )
+anims/Attack_Right = SubResource( 3 )
+anims/Attack_Up = SubResource( 4 )
+anims/GetSword = SubResource( 5 )
+anims/Idle_Down = SubResource( 6 )
+anims/Idle_Left = SubResource( 7 )
+anims/Idle_Right = SubResource( 8 )
+anims/Idle_Up = SubResource( 9 )
+anims/Push_Down = SubResource( 10 )
+anims/Push_Left = SubResource( 11 )
+anims/Push_Right = SubResource( 12 )
+anims/Push_Up = SubResource( 13 )
+anims/Walk_Down = SubResource( 14 )
+anims/Walk_Left = SubResource( 15 )
+anims/Walk_Right = SubResource( 16 )
+anims/Walk_Up = SubResource( 17 )
 script = ExtResource( 4 )
 
 [node name="ItemDetector" type="Area2D" parent="." index="3"]
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector" index="0"]
-shape = SubResource( 14 )
+shape = SubResource( 18 )
+
+[node name="TeleportTween" type="Tween" parent="." index="4"]
 [connection signal="body_entered" from="ItemDetector" to="." method="_on_ItemDetector_body_entered"]
