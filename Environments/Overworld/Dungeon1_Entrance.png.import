@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Dungeon1_Entrance.png-a64688dba5d416c66f6f4e289140fb00.stex"
+path="res://.import/Dungeon1_Entrance.png-e9b31c00b1568688c5c8b11a58fbcd1b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environments/Beach/Dungeon1_Entrance.png"
-dest_files=[ "res://.import/Dungeon1_Entrance.png-a64688dba5d416c66f6f4e289140fb00.stex" ]
+source_file="res://Environments/Overworld/Dungeon1_Entrance.png"
+dest_files=[ "res://.import/Dungeon1_Entrance.png-e9b31c00b1568688c5c8b11a58fbcd1b.stex" ]
 
 [params]
 

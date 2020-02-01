@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Waves.png-f37fcd26661743a9d151a0313a6a81c5.stex"
+path="res://.import/CliffStairs.png-6eb6d4c6ab3da12405314dcc50b04812.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environments/Beach/Waves.png"
-dest_files=[ "res://.import/Waves.png-f37fcd26661743a9d151a0313a6a81c5.stex" ]
+source_file="res://Environments/Overworld/CliffStairs.png"
+dest_files=[ "res://.import/CliffStairs.png-6eb6d4c6ab3da12405314dcc50b04812.stex" ]
 
 [params]
 
