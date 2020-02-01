@@ -53,6 +53,8 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\GridAlignedCamera\GridAlignedCamera.cs" />
+    <Compile Include="Engine\GridAlignedCamera\GridAlignedCamera.designer.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.designer.cs" />
     <Compile Include="Entities\Player\Player.cs" />
