@@ -43,7 +43,9 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
             var playerDelta = direction * new Vector2(6, 6);
             Tween.InterpolateProperty(player, nameof(player.Position),
                 player.Position, player.Position + playerDelta, 1);
+            Tween.InterpolateCallback(player, 1, nameof(player.Unfreeze));
 
+            player.Freeze();
             Tween.Start();
         }
     }
