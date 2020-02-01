@@ -58,9 +58,11 @@
     <Compile Include="Engine\GridAlignedCamera\TransitionAction.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.designer.cs" />
+    <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\Player\Player.cs" />
     <Compile Include="Entities\Player\Player.designer.cs" />
     <Compile Include="Entities\Player\PlayerInput.cs" />
+    <Compile Include="Entities\Sword\Sword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
