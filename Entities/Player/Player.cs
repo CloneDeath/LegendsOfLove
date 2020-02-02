@@ -7,27 +7,32 @@ namespace LegendsOfLove.Entities.Player {
         
         [Export] public bool HasSword { get; set; }
         [Export] public float Speed = 16.0f;
-        [Export] public bool Frozen { get; set; }
         [Export] public bool UpdateAnimation { get; set; } = true;
 
         protected Vector2 Facing { get; set; } = Vector2.Right;
 
-        public void Freeze() => Frozen = true;
-        public void Unfreeze() => Frozen = false;
         
-        protected PlayerInput PlayerInput => new PlayerInput(Frozen);
+        protected PlayerInput PlayerInput => new PlayerInput(IsFrozen);
 
         public override void _Process(float delta) {
-            MoveAndSlide(PlayerInput.MoveVector * Speed);
+            if (!IsFrozen) {
+                PlayerAnimation.Play();
 
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (PlayerInput.MoveVector.Length() == 1) {
-                Facing = PlayerInput.MoveVector;
+                MoveAndSlide(PlayerInput.MoveVector * Speed);
+
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                if (PlayerInput.MoveVector.Length() == 1) {
+                    Facing = PlayerInput.MoveVector;
+                }
+
+                PushSensor.CastTo = Facing * 6;
+
+                UpdatePlayerAnimation();
+                UpdatePushing();
             }
-            PushSensor.CastTo = Facing * 6;
-            
-            UpdatePlayerAnimation();
-            UpdatePushing();
+            else {
+                PlayerAnimation.Stop();
+            }
 
             base._Process(delta);
         }

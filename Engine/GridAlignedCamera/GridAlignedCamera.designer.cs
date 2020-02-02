@@ -5,5 +5,6 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 		protected Tween Tween => GetNode<Tween>("Tween");
 		protected Camera2D Camera2D => GetNode<Camera2D>("Camera2D");
 		protected AnimationPlayer AnimationPlayer => GetNode<AnimationPlayer>("AnimationPlayer");
+		protected Area2D ResetArea2D => GetNode<Area2D>("ResetArea2D");
 	}
 }

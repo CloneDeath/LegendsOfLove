@@ -2,7 +2,14 @@ using Godot;
 
 namespace LegendsOfLove.Entities.PushableBarrel {
     public partial class PushableBarrel : BaseEntity.BaseEntity, IPushable {
-        protected bool BeingPushed;
+        public override void _Process(float delta) {
+            if (IsFrozen) {
+                AnimationPlayer.Stop();
+            }
+            
+            base._Process(delta);
+        }
+
         public void Push(Vector2 direction) {
             if (MovementTween.IsActive()) return;
             

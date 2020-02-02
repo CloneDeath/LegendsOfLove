@@ -4,11 +4,10 @@
 [ext_resource path="res://Entities/PushableBarrel/PushableBarrel.png" type="Texture" id=2]
 [ext_resource path="res://Entities/PushableBarrel/PushableBarrel.cs" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.5, 2.5 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "Roll"
+[sub_resource type="Animation" id=2]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -24,7 +23,7 @@ tracks/0/keys = {
 }
 
 [node name="PushableBarrel" instance=ExtResource( 1 )]
-collision_layer = 20
+collision_layer = 52
 collision_mask = 23
 script = ExtResource( 3 )
 
@@ -34,9 +33,9 @@ offset = Vector2( 0, 0 )
 hframes = 4
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-anims/Roll = SubResource( 1 )
+anims/Roll = SubResource( 2 )
 
 [node name="MovementTween" type="Tween" parent="." index="3"]

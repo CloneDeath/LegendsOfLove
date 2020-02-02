@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using LegendsOfLove.Entities.BaseEntity;
 using LegendsOfLove.Entities.Player;
 
 namespace LegendsOfLove.Engine.GridAlignedCamera {
     public partial class GridAlignedCamera : Node2D {
         protected Queue<TransitionAction> TransitionQueue = new Queue<TransitionAction>();
-        
+
         public override void _PhysicsProcess(float delta) {
             Camera2D.GlobalPosition = GlobalPosition.Round();
 
@@ -33,8 +34,17 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 
         protected bool CanTransition => !Tween.IsActive();
 
+        protected List<BaseEntity> GetCurrentEntitiesOnScreen() {
+            return ResetArea2D.GetOverlappingBodies().Cast<BaseEntity>().ToList();
+        }
+
         protected void Transition(Vector2 direction, Player player) {
             Tween.RemoveAll();
+
+            var oldEntities = GetCurrentEntitiesOnScreen();
+            foreach (var entity in oldEntities) {
+                entity.Freeze();
+            }
 
             var delta = direction * new Vector2(72, 48);
             Tween.InterpolateProperty(this, nameof(Position),
@@ -44,9 +54,21 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
             Tween.InterpolateProperty(player, nameof(player.Position),
                 player.Position, player.Position + playerDelta, 1);
             Tween.InterpolateCallback(player, 1, nameof(player.Unfreeze));
+            Tween.InterpolateCallback(this, 1, nameof(UnfreezeNewAndResetOld), oldEntities);
 
             player.Freeze();
             Tween.Start();
+        }
+
+        public void UnfreezeNewAndResetOld(List<BaseEntity> oldEntities) {
+            foreach (var entity in oldEntities) {
+                entity.Reset();
+            }
+
+            var newEntities = GetCurrentEntitiesOnScreen();
+            foreach (var entity in newEntities) {
+                entity.Unfreeze();
+            }
         }
 
         public void FadeIn() => AnimationPlayer.Play("FadeIn");
