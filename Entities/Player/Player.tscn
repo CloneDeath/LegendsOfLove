@@ -46,7 +46,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:Frozen")
+tracks/3/path = NodePath(".:DisableInput")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -99,7 +99,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:Frozen")
+tracks/3/path = NodePath(".:DisableInput")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -152,7 +152,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:Frozen")
+tracks/3/path = NodePath(".:DisableInput")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -205,7 +205,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath(".:Frozen")
+tracks/3/path = NodePath(".:DisableInput")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -231,7 +231,7 @@ tracks/0/keys = {
 "values": [ 15 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:Frozen")
+tracks/1/path = NodePath(".:DisableInput")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -604,11 +604,13 @@ radius = 3.0
 collision_layer = 1
 collision_mask = 6
 script = ExtResource( 3 )
+UpdateAnimation = false
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 offset = Vector2( 0, -2 )
 hframes = 31
+frame = 25
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="." index="2"]
 autoplay = "Idle_Right"

@@ -4,15 +4,17 @@ using LegendsOfLove.Engine.GridAlignedCamera;
 namespace LegendsOfLove.Entities.Player {
     public partial class Player : BaseEntity.BaseEntity {
         protected GridAlignedCamera Camera => GetTree().GetNodesInGroup("camera")[0] as GridAlignedCamera;
+        [Export] public bool DisableInput { get; set; }
         
         [Export] public bool HasSword { get; set; }
+        [Export] public bool HasHammer { get; set; }
         [Export] public float Speed = 16.0f;
         [Export] public bool UpdateAnimation { get; set; } = true;
 
         protected Vector2 Facing { get; set; } = Vector2.Right;
 
         
-        protected PlayerInput PlayerInput => new PlayerInput(IsFrozen);
+        protected PlayerInput PlayerInput => new PlayerInput(IsFrozen || DisableInput);
 
         public override void _Process(float delta) {
             if (!IsFrozen) {

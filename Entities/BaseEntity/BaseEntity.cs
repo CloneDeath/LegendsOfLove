@@ -2,7 +2,7 @@ using Godot;
 
 namespace LegendsOfLove.Entities.BaseEntity {
     public partial class BaseEntity : KinematicBody2D {
-        public bool IsFrozen { get; set; }
+        [Export] public bool IsFrozen { get; set; }
         public void Freeze() => IsFrozen = true;
         public void Unfreeze() => IsFrozen = false;
         
