@@ -58,6 +58,7 @@
     <Compile Include="Engine\GridAlignedCamera\TransitionAction.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.designer.cs" />
+    <Compile Include="Entities\Door\Door.cs" />
     <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\IPushable.cs" />
     <Compile Include="Entities\Player\Player.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Entities\Player\PlayerInput.cs" />
     <Compile Include="Entities\PushableBarrel\PushableBarrel.cs" />
     <Compile Include="Entities\PushableBarrel\PushableBarrel.designer.cs" />
+    <Compile Include="Entities\Switch\Switch.cs" />
     <Compile Include="Entities\Sword\Sword.cs" />
     <Compile Include="Entities\Teleporter\Teleporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
