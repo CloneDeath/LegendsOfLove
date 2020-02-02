@@ -106,7 +106,7 @@ Destination = NodePath("../../OverworldTiles/D1_Destination")
 shape = SubResource( 2 )
 
 [node name="PushableBarrel" parent="." instance=ExtResource( 10 )]
-position = Vector2( 30, 18 )
+position = Vector2( 102, -360 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 36, 30 )
