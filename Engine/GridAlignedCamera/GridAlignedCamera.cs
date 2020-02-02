@@ -54,17 +54,18 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
             Tween.InterpolateProperty(player, nameof(player.Position),
                 player.Position, player.Position + playerDelta, 1);
             Tween.InterpolateCallback(player, 1, nameof(player.Unfreeze));
-            //Tween.InterpolateCallback(this, 1, nameof(UnfreezeNewAndResetOld), oldEntities);
+
+            foreach (var entity in oldEntities) {
+                Tween.InterpolateCallback(entity, 1, nameof(entity.Reset));
+            }
+            Tween.InterpolateCallback(this, 1, nameof(UnfreezeNew));
+            
 
             player.Freeze();
             Tween.Start();
         }
 
-        public void UnfreezeNewAndResetOld(List<BaseEntity> oldEntities) {
-            foreach (var entity in oldEntities) {
-                entity.Reset();
-            }
-
+        public void UnfreezeNew() {
             var newEntities = GetCurrentEntitiesOnScreen();
             foreach (var entity in newEntities) {
                 entity.Unfreeze();
