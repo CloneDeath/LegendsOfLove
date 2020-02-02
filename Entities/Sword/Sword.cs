@@ -3,6 +3,8 @@ namespace LegendsOfLove.Entities.Sword {
     {
         public void OnPickup(Player.Player player) {
             player.HasSword = true;
+            player.Play("Get_Sword");
+            QueueFree();
         }
     }
 }

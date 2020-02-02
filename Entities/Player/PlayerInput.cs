@@ -14,6 +14,7 @@ namespace LegendsOfLove.Entities.Player {
 		public bool MoveDown => !_frozen && Input.IsActionPressed("move_down");
 
 		public bool Attack => !_frozen && Input.IsActionJustPressed("attack");
+		public bool Hammer => !_frozen && Input.IsActionJustPressed("hammer");
 
 		public Vector2 MoveVector {
 			get {

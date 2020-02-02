@@ -3,6 +3,8 @@ namespace LegendsOfLove.Entities.Hammer {
     {
         public void OnPickup(Player.Player player) {
             player.HasHammer = true;
+            player.Play("Get_Hammer");
+            QueueFree();
         }
     }
 }
