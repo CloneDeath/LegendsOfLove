@@ -24,9 +24,20 @@ namespace LegendsOfLove.Entities.Player {
             if (PlayerInput.MoveVector.Length() == 1) {
                 Facing = PlayerInput.MoveVector;
             }
+            PushSensor.CastTo = Facing * 6;
+            
             UpdatePlayerAnimation();
+            UpdatePushing();
 
             base._Process(delta);
+        }
+        
+        private void UpdatePushing() {
+            if (!UpdateAnimation) return;
+            if (IsPushing() && PushSensor.IsColliding()) {
+                var collider = PushSensor.GetCollider() as IPushable;
+                collider?.Push(Facing);
+            }
         }
 
         protected void UpdatePlayerAnimation() {
@@ -35,13 +46,16 @@ namespace LegendsOfLove.Entities.Player {
                 SetAnimation("Attack");
                 return;
             }
-            if (PlayerInput.MoveVector.Length() > 0) {
-                if (TestMove(Transform, Facing)) {
-                    SetAnimation("Push");
-                    return;
-                }
+            if (IsPushing()) {
+                SetAnimation("Push");
+                return;
             }
             SetAnimation(PlayerInput.MoveVector.Length() > 0 ? "Walk" : "Idle");
+        }
+
+        protected bool IsPushing() {
+            return PlayerInput.MoveVector.Length() > 0
+                   && TestMove(Transform, Facing);
         }
 
         protected void SetAnimation(string animationName) {

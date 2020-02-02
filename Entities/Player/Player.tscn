@@ -637,4 +637,9 @@ collision_mask = 8
 shape = SubResource( 18 )
 
 [node name="TeleportTween" type="Tween" parent="." index="4"]
+
+[node name="PushSensor" type="RayCast2D" parent="." index="5"]
+enabled = true
+cast_to = Vector2( 6, 0 )
+collision_mask = 16
 [connection signal="body_entered" from="ItemDetector" to="." method="_on_ItemDetector_body_entered"]
