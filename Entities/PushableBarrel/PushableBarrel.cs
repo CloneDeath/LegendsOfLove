@@ -12,7 +12,7 @@ namespace LegendsOfLove.Entities.PushableBarrel {
 
         public void Push(Vector2 direction) {
             if (MovementTween.IsActive()) return;
-            if (TestMove(Transform, direction * 6)) return;
+            if (TestMove(GlobalTransform, direction * 6)) return;
             
             AnimationPlayer.Play("Roll");
             StartMovementTween(direction);

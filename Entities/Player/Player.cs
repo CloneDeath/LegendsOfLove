@@ -60,7 +60,7 @@ namespace LegendsOfLove.Entities.Player {
 
         protected bool IsPushing() {
             return PlayerInput.MoveVector.Length() > 0
-                   && TestMove(Transform, Facing);
+                   && TestMove(GlobalTransform, Facing);
         }
 
         protected void SetAnimation(string animationName) {

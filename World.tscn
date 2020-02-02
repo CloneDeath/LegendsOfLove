@@ -109,8 +109,8 @@ Destination = NodePath("../../OverworldTiles/D1_Destination")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Caves/CaveTiles/OverworldTeleporter"]
 shape = SubResource( 2 )
 
-[node name="PushableBarrel_1" parent="Caves" instance=ExtResource( 10 )]
-position = Vector2( 174, 120 )
+[node name="PushableBarrel_1" parent="Caves/CaveTiles" instance=ExtResource( 10 )]
+position = Vector2( 177, 123 )
 
 [node name="PushableBarrel_2_Top" parent="Caves" instance=ExtResource( 10 )]
 position = Vector2( 126, 72 )
