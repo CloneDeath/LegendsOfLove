@@ -102,6 +102,7 @@ attack={
 2d_physics/layer_4="Item"
 2d_physics/layer_5="Pushable"
 2d_physics/layer_6="Resetable"
+2d_physics/layer_7="BlocksNonPlayerMovement"
 
 [rendering]
 

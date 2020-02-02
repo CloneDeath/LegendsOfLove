@@ -99,6 +99,22 @@ collision_layer = 4
 [node name="RightEdge" type="CollisionShape2D" parent="RightArea2D"]
 shape = SubResource( 5 )
 
+[node name="NonPlayerEntityBounds" type="StaticBody2D" parent="."]
+collision_layer = 64
+collision_mask = 50
+
+[node name="TopEdge" type="CollisionShape2D" parent="NonPlayerEntityBounds"]
+shape = SubResource( 2 )
+
+[node name="BottomEdge" type="CollisionShape2D" parent="NonPlayerEntityBounds"]
+shape = SubResource( 3 )
+
+[node name="LeftEdge" type="CollisionShape2D" parent="NonPlayerEntityBounds"]
+shape = SubResource( 4 )
+
+[node name="RightEdge" type="CollisionShape2D" parent="NonPlayerEntityBounds"]
+shape = SubResource( 5 )
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
