@@ -66,6 +66,8 @@
     <Compile Include="Entities\Sword\Sword.cs" />
     <Compile Include="Entities\Teleporter\Teleporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Title\MainMenu.cs" />
+    <Compile Include="Title\MainMenu.designer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

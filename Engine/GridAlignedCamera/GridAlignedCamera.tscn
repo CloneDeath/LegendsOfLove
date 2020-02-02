@@ -1,30 +1,29 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Engine/GridAlignedCamera/GridAlignedCamera.cs" type="Script" id=1]
-[ext_resource path="res://Engine/GridAlignedCamera/DitherGuide.png" type="Texture" id=2]
+[ext_resource path="res://Engine/ScreenDither/ScreenDither.tscn" type="PackedScene" id=2]
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 24 )
 
-[sub_resource type="SegmentShape2D" id=1]
+[sub_resource type="SegmentShape2D" id=2]
 b = Vector2( 72, 0 )
 
-[sub_resource type="SegmentShape2D" id=2]
+[sub_resource type="SegmentShape2D" id=3]
 a = Vector2( 0, 48 )
 b = Vector2( 72, 48 )
 
-[sub_resource type="SegmentShape2D" id=3]
+[sub_resource type="SegmentShape2D" id=4]
 b = Vector2( 0, 48 )
 
-[sub_resource type="SegmentShape2D" id=4]
+[sub_resource type="SegmentShape2D" id=5]
 a = Vector2( 72, 0 )
 b = Vector2( 72, 48 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "FadeIn"
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:material:shader_param/level")
+tracks/0/path = NodePath("ScreenDither:material:shader_param/level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -36,11 +35,10 @@ tracks/0/keys = {
 "values": [ 8, 16 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "FadeOut"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:material:shader_param/level")
+tracks/0/path = NodePath("ScreenDither:material:shader_param/level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -51,25 +49,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0, 8 ]
 }
-
-[sub_resource type="Shader" id=7]
-code = "shader_type canvas_item;
-
-uniform int level = 1;
-uniform sampler2D dither;
-
-void fragment(){
-	int x = int(int(floor(UV.x * 72.0)) % 4);
-	int y = int(int(floor(UV.y * 48.0)) % 4);
-	int dt = x + (y * 4);
-	
-	COLOR = texture(dither, vec2(float(dt), float(level % 16))/16.0);
-}"
-
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
-shader_param/level = 16
-shader_param/dither = ExtResource( 2 )
 
 [node name="GridAlignedCamera" type="Node2D" groups=[
 "camera",
@@ -87,46 +66,40 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContentsArea2D"]
 position = Vector2( 36, 24 )
-shape = SubResource( 9 )
+shape = SubResource( 1 )
 
 [node name="TopArea2D" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="TopEdge" type="CollisionShape2D" parent="TopArea2D"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="BottomArea2D" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="BottomEdge" type="CollisionShape2D" parent="BottomArea2D"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="LeftArea2D" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="LeftEdge" type="CollisionShape2D" parent="LeftArea2D"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="RightArea2D" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="RightEdge" type="CollisionShape2D" parent="RightArea2D"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/FadeIn = SubResource( 5 )
-anims/FadeOut = SubResource( 6 )
+autoplay = "FadeIn"
+anims/FadeIn = SubResource( 6 )
+anims/FadeOut = SubResource( 7 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource( 8 )
-margin_right = 72.0
-margin_bottom = 48.0
-color = Color( 1, 1, 1, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ScreenDither" parent="." instance=ExtResource( 2 )]
 [connection signal="body_exited" from="ContentsArea2D" to="." method="_on_ContentsArea2D_body_exited"]
 [connection signal="body_entered" from="TopArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( 0, -1 ) ]]
 [connection signal="body_entered" from="BottomArea2D" to="." method="_on_Player_body_entered" binds= [ Vector2( 0, 1 ) ]]

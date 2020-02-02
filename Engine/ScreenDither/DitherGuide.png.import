@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DitherGuide.png-8abb5dcaa4d5fbb4965e2a5b966db9d9.stex"
+path="res://.import/DitherGuide.png-f1b5dd23e0cef457d9e45b8552932468.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Engine/GridAlignedCamera/DitherGuide.png"
-dest_files=[ "res://.import/DitherGuide.png-8abb5dcaa4d5fbb4965e2a5b966db9d9.stex" ]
+source_file="res://Engine/ScreenDither/DitherGuide.png"
+dest_files=[ "res://.import/DitherGuide.png-f1b5dd23e0cef457d9e45b8552932468.stex" ]
 
 [params]
 
