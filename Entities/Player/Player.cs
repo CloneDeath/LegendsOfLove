@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using LegendsOfLove.Engine.GridAlignedCamera;
 
@@ -20,7 +21,7 @@ namespace LegendsOfLove.Entities.Player {
             if (!IsFrozen) {
                 PlayerAnimation.Play();
 
-                MoveAndSlide(PlayerInput.MoveVector * Speed);
+                MoveAndSlide(PlayerInput.MoveVector.Normalized() * Speed);
 
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (PlayerInput.MoveVector.Length() == 1) {
@@ -28,6 +29,7 @@ namespace LegendsOfLove.Entities.Player {
                 }
 
                 PushSensor.CastTo = Facing * 6;
+                PushSensor.ForceRaycastUpdate();
 
                 UpdatePlayerAnimation();
                 UpdatePushing();
