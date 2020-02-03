@@ -60,6 +60,8 @@
     <Compile Include="Entities\BaseEntity\BaseEntity.designer.cs" />
     <Compile Include="Entities\Boulder\Boulder.cs" />
     <Compile Include="Entities\Door\Door.cs" />
+    <Compile Include="Entities\Enemies\Bat\Bat.cs" />
+    <Compile Include="Entities\Enemies\Bat\Bat.designer.cs" />
     <Compile Include="Entities\Hammer\Hammer.cs" />
     <Compile Include="Entities\IHammerable.cs" />
     <Compile Include="Entities\IItemPickup.cs" />

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Environments/Overworld/CliffStairs.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Sword/Sword.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Entities/Hammer/Hammer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Entities/Boulder/Boulder.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Environments/Caves/Bridge.png" type="Texture" id=15]
+[ext_resource path="res://Entities/Enemies/Bat/Bat.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 7 )
@@ -162,6 +163,9 @@ position = Vector2( 351, 75 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 36, 30 )
+
+[node name="Bat" parent="." instance=ExtResource( 16 )]
+position = Vector2( 24, -18 )
 
 [node name="GridAlignedCamera" parent="." instance=ExtResource( 5 )]
 [connection signal="Pressed" from="CaveTiles/Room_Hammer/Switch" to="CaveTiles/Room_Hammer/Door" method="Activate"]
