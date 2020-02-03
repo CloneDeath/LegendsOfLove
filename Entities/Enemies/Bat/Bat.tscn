@@ -22,6 +22,7 @@ tracks/0/keys = {
 }
 
 [node name="Bat" instance=ExtResource( 1 )]
+collision_mask = 129
 script = ExtResource( 3 )
 IsFrozen = true
 

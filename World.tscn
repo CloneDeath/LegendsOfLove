@@ -154,6 +154,15 @@ position = Vector2( 36, 18 )
 [node name="Boulder2" parent="CaveTiles/Room_Fight1" instance=ExtResource( 14 )]
 position = Vector2( 43, 18 )
 
+[node name="Bat" parent="CaveTiles/Room_Fight1" instance=ExtResource( 16 )]
+position = Vector2( 42, 30 )
+
+[node name="Bat2" parent="CaveTiles/Room_Fight1" instance=ExtResource( 16 )]
+position = Vector2( 6, 24 )
+
+[node name="Bat3" parent="CaveTiles/Room_Fight1" instance=ExtResource( 16 )]
+position = Vector2( 18, 12 )
+
 [node name="Bridge" type="Sprite" parent="CaveTiles"]
 position = Vector2( 261, 81 )
 texture = ExtResource( 15 )
@@ -161,11 +170,20 @@ texture = ExtResource( 15 )
 [node name="Boulder" parent="CaveTiles" instance=ExtResource( 14 )]
 position = Vector2( 351, 75 )
 
+[node name="Bat" parent="CaveTiles" instance=ExtResource( 16 )]
+position = Vector2( 177, 171 )
+
+[node name="Bat2" parent="CaveTiles" instance=ExtResource( 16 )]
+position = Vector2( 273, 63 )
+
+[node name="Bat3" parent="CaveTiles" instance=ExtResource( 16 )]
+position = Vector2( 309, 81 )
+
+[node name="Bat4" parent="CaveTiles" instance=ExtResource( 16 )]
+position = Vector2( 339, 87 )
+
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 36, 30 )
-
-[node name="Bat" parent="." instance=ExtResource( 16 )]
-position = Vector2( 24, -18 )
 
 [node name="GridAlignedCamera" parent="." instance=ExtResource( 5 )]
 [connection signal="Pressed" from="CaveTiles/Room_Hammer/Switch" to="CaveTiles/Room_Hammer/Door" method="Activate"]
