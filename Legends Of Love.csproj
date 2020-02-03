@@ -64,6 +64,8 @@
     <Compile Include="Entities\Enemies\Bat\Bat.designer.cs" />
     <Compile Include="Entities\Enemies\Slime\Slime.cs" />
     <Compile Include="Entities\Enemies\Slime\Slime.designer.cs" />
+    <Compile Include="Entities\Enemies\Worm\Worm.cs" />
+    <Compile Include="Entities\Enemies\Worm\Worm.designer.cs" />
     <Compile Include="Entities\IDamageable.cs" />
     <Compile Include="Entities\IHammerable.cs" />
     <Compile Include="Entities\IItemPickup.cs" />

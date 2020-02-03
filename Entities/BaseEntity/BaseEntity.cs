@@ -85,7 +85,7 @@ namespace LegendsOfLove.Entities.BaseEntity {
 		protected void _on_InvulnerabilityTimer_timeout() {
 			IsInvulnerable = false;
 		}
-		
+
 		protected Vector2 GetRandomDirection() {
 			switch (GD.Randi() % 8) {
 				case 0: return Vector2.Up + Vector2.Right;
