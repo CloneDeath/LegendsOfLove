@@ -1134,7 +1134,7 @@ hframes = 41
 [node name="Gravestone" type="Sprite" parent="." index="1"]
 visible = false
 texture = ExtResource( 5 )
-offset = Vector2( 0.5, -5 )
+offset = Vector2( 0.5, -3 )
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="." index="3"]
 autoplay = "GameStart"
