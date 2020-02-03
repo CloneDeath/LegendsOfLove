@@ -58,8 +58,10 @@
     <Compile Include="Engine\GridAlignedCamera\TransitionAction.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.cs" />
     <Compile Include="Entities\BaseEntity\BaseEntity.designer.cs" />
+    <Compile Include="Entities\Boulder\Boulder.cs" />
     <Compile Include="Entities\Door\Door.cs" />
     <Compile Include="Entities\Hammer\Hammer.cs" />
+    <Compile Include="Entities\IHammerable.cs" />
     <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\IPushable.cs" />
     <Compile Include="Entities\Player\Player.cs" />

@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using LegendsOfLove.Engine.GridAlignedCamera;
 
@@ -99,6 +100,14 @@ namespace LegendsOfLove.Entities.Player {
 
 			TeleportTween.InterpolateCallback(this, 1.0f, "Unfreeze");
 			TeleportTween.Start();
+		}
+
+		public void DoHammerDamage() {
+			var nodes = HammerArea.GetOverlappingBodies();
+			foreach (var node in nodes) {
+				if (!(node is IHammerable hammerable)) continue;
+				hammerable.Hammer(Facing);
+			}
 		}
 	}
 }
