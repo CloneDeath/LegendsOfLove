@@ -33,6 +33,12 @@ namespace LegendsOfLove.Entities.Player {
 
 				UpdatePlayerAnimation();
 				UpdatePushing();
+
+				if (DamageArea.Monitoring) {
+					foreach (var body in DamageArea.GetOverlappingBodies()) {
+						GD.Print(body);
+					}
+				}
 			}
 			else {
 				PlayerAnimation.Stop();

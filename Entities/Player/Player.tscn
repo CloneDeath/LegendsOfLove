@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Entities/BaseEntity/BaseEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/Player/Player.png" type="Texture" id=2]
@@ -52,6 +52,30 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DamageArea:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6, 0 ), Vector2( 4, 4 ), Vector2( 0, 6 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("DamageArea:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 0.35 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -217,7 +241,7 @@ tracks/3/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=5]
 resource_name = "Get_Hammer"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -268,8 +292,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Get_Sword"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -319,7 +342,7 @@ tracks/3/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=7]
 resource_name = "Hammer_Down"
 length = 0.35
 step = 0.05
@@ -398,7 +421,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=8]
 resource_name = "Hammer_Left"
 length = 0.35
 step = 0.05
@@ -477,7 +500,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=9]
 resource_name = "Hammer_Right"
 length = 0.35
 step = 0.05
@@ -556,7 +579,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=10]
 resource_name = "Hammer_Up"
 length = 0.35
 step = 0.05
@@ -635,7 +658,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -661,7 +684,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -687,7 +710,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=13]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -713,7 +736,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=14]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -739,7 +762,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=15]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -767,7 +790,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=16]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -795,7 +818,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=17]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -823,7 +846,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=18]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -851,7 +874,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=19]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -879,7 +902,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=20]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -907,7 +930,7 @@ tracks/1/keys = {
 "values": [ Vector2( -1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=21]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -935,7 +958,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=22]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -963,11 +986,14 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=18]
+[sub_resource type="CircleShape2D" id=23]
 radius = 3.0
 
 [sub_resource type="CircleShape2D" id=24]
 radius = 4.0
+
+[sub_resource type="CircleShape2D" id=25]
+radius = 3.0
 
 [node name="Player" groups=[
 "player",
@@ -980,7 +1006,7 @@ script = ExtResource( 3 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -2 )
 hframes = 41
-frame = 37
+frame = 30
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="." index="2"]
 autoplay = "Idle_Right"
@@ -988,31 +1014,31 @@ anims/Attack_Down = SubResource( 1 )
 anims/Attack_Left = SubResource( 2 )
 anims/Attack_Right = SubResource( 3 )
 anims/Attack_Up = SubResource( 4 )
-anims/Get_Hammer = SubResource( 19 )
-anims/Get_Sword = SubResource( 5 )
-anims/Hammer_Down = SubResource( 20 )
-anims/Hammer_Left = SubResource( 21 )
-anims/Hammer_Right = SubResource( 22 )
-anims/Hammer_Up = SubResource( 23 )
-anims/Idle_Down = SubResource( 6 )
-anims/Idle_Left = SubResource( 7 )
-anims/Idle_Right = SubResource( 8 )
-anims/Idle_Up = SubResource( 9 )
-anims/Push_Down = SubResource( 10 )
-anims/Push_Left = SubResource( 11 )
-anims/Push_Right = SubResource( 12 )
-anims/Push_Up = SubResource( 13 )
-anims/Walk_Down = SubResource( 14 )
-anims/Walk_Left = SubResource( 15 )
-anims/Walk_Right = SubResource( 16 )
-anims/Walk_Up = SubResource( 17 )
+anims/Get_Hammer = SubResource( 5 )
+anims/Get_Sword = SubResource( 6 )
+anims/Hammer_Down = SubResource( 7 )
+anims/Hammer_Left = SubResource( 8 )
+anims/Hammer_Right = SubResource( 9 )
+anims/Hammer_Up = SubResource( 10 )
+anims/Idle_Down = SubResource( 11 )
+anims/Idle_Left = SubResource( 12 )
+anims/Idle_Right = SubResource( 13 )
+anims/Idle_Up = SubResource( 14 )
+anims/Push_Down = SubResource( 15 )
+anims/Push_Left = SubResource( 16 )
+anims/Push_Right = SubResource( 17 )
+anims/Push_Up = SubResource( 18 )
+anims/Walk_Down = SubResource( 19 )
+anims/Walk_Left = SubResource( 20 )
+anims/Walk_Right = SubResource( 21 )
+anims/Walk_Up = SubResource( 22 )
 script = ExtResource( 4 )
 
 [node name="ItemDetector" type="Area2D" parent="." index="3"]
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 23 )
 
 [node name="TeleportTween" type="Tween" parent="." index="4"]
 
@@ -1028,4 +1054,14 @@ collision_mask = 94
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HammerArea" index="0"]
 shape = SubResource( 24 )
+
+[node name="DamageArea" type="Area2D" parent="." index="7"]
+position = Vector2( 0, 6 )
+monitoring = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+modulate = Color( 1, 0, 0, 1 )
+shape = SubResource( 25 )
 [connection signal="body_entered" from="ItemDetector" to="." method="_on_ItemDetector_body_entered"]

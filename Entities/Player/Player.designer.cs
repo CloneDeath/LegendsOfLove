@@ -6,5 +6,6 @@ namespace LegendsOfLove.Entities.Player {
 		protected Tween TeleportTween => GetNode<Tween>("TeleportTween");
 		protected RayCast2D PushSensor => GetNode<RayCast2D>("PushSensor");
 		protected Area2D HammerArea => GetNode<Area2D>("HammerArea");
+		protected Area2D DamageArea => GetNode<Area2D>("DamageArea");
 	}
 }
