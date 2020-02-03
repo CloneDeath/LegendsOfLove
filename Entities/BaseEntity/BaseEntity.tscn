@@ -80,7 +80,7 @@ tracks/1/keys = {
 [node name="BaseEntity" type="KinematicBody2D" groups=[
 "entity",
 ]]
-collision_layer = 34
+collision_layer = 2
 collision_mask = 69
 script = ExtResource( 2 )
 

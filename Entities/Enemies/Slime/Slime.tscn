@@ -1,12 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Entities/BaseEntity/BaseEntity.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Entities/Enemies/Bat/Bat.png" type="Texture" id=2]
-[ext_resource path="res://Entities/Enemies/Bat/Bat.cs" type="Script" id=3]
+[ext_resource path="res://Entities/Enemies/Slime/Slime.png" type="Texture" id=2]
+[ext_resource path="res://Entities/Enemies/Slime/Slime.cs" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Flap"
-length = 0.2
+resource_name = "Idle"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -15,23 +14,25 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
 
-[node name="Bat" instance=ExtResource( 1 )]
-collision_mask = 129
+[node name="Slime" instance=ExtResource( 1 )]
+collision_mask = 197
 script = ExtResource( 3 )
 DropHeartOnDeath = true
 CanBeDamaged = true
+MaxHealth = 1
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-offset = Vector2( 0, 0 )
+offset = Vector2( 0, -1 )
 hframes = 2
+frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-autoplay = "Flap"
-anims/Flap = SubResource( 1 )
+[node name="Idle" type="AnimationPlayer" parent="." index="5"]
+autoplay = "Idle"
+anims/Idle = SubResource( 1 )

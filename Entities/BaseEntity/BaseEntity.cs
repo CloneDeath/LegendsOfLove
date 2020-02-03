@@ -1,7 +1,9 @@
 using Godot;
+using LegendsOfLove.Entities.Items.Heart;
 
 namespace LegendsOfLove.Entities.BaseEntity {
 	public partial class BaseEntity : KinematicBody2D, IDamageable {
+		[Export] public bool DropHeartOnDeath { get; set; }
 		[Export] public bool CanBeDamaged { get; set; }
 		[Export]  public int MaxHealth { get; set; } = 2;
 		public int Health { get; set; } = 2;
@@ -63,6 +65,12 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			InvulnerabilityTimer.Start();
 			KnockbackAnimation.Play("Knockback");
 			Health -= 1;
+
+			if (DropHeartOnDeath && !IsAlive && (GD.Randi() % 4) == 0) {
+				var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
+				GetParent().AddChild(heart);
+				heart.Position = Position;
+			}
 		}
 
 		public virtual void OnKnockbackEnd() {
@@ -76,6 +84,19 @@ namespace LegendsOfLove.Entities.BaseEntity {
 
 		protected void _on_InvulnerabilityTimer_timeout() {
 			IsInvulnerable = false;
+		}
+		
+		protected Vector2 GetRandomDirection() {
+			switch (GD.Randi() % 8) {
+				case 0: return Vector2.Up + Vector2.Right;
+				case 1: return Vector2.Down + Vector2.Right;
+				case 2: return Vector2.Down + Vector2.Left;
+				case 3: return Vector2.Up + Vector2.Left;
+				case 4: return Vector2.Up;
+				case 5: return Vector2.Right;
+				case 6: return Vector2.Down;
+				default: return Vector2.Left;
+			}
 		}
 	}
 }
