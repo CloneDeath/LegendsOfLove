@@ -1,4 +1,3 @@
-using System.Linq;
 using Godot;
 using LegendsOfLove.Engine.GridAlignedCamera;
 
@@ -18,11 +17,16 @@ namespace LegendsOfLove.Entities.Player {
 		protected PlayerInput PlayerInput => new PlayerInput(IsFrozen || DisableInput);
 
 		public override void _Process(float delta) {
-			if (!IsFrozen) {
+			if (IsFrozen) {
+				PlayerAnimation.Stop();
+			}
+			else {
 				PlayerAnimation.Play();
+			}
 
-				MoveAndSlide(PlayerInput.MoveVector.Normalized() * Speed);
+			base._Process(delta);
 
+			if (!IsFrozen) {
 				// ReSharper disable once CompareOfFloatsByEqualityOperator
 				if (PlayerInput.MoveVector.Length() == 1) {
 					Facing = PlayerInput.MoveVector;
@@ -36,15 +40,16 @@ namespace LegendsOfLove.Entities.Player {
 
 				if (DamageArea.Monitoring) {
 					foreach (var body in DamageArea.GetOverlappingBodies()) {
-						GD.Print(body);
+						if (!(body is IDamageable damageable)) continue;
+						//var dir = GlobalPosition.DirectionTo(((Node2D) body).GlobalPosition);
+						damageable.Damage(Facing);
 					}
 				}
 			}
-			else {
-				PlayerAnimation.Stop();
-			}
+		}
 
-			base._Process(delta);
+		protected override Vector2 GetVelocity() {
+			return PlayerInput.MoveVector.Normalized() * Speed;
 		}
 
 		private void UpdatePushing() {

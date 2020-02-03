@@ -2,16 +2,16 @@ using Godot;
 
 namespace LegendsOfLove.Entities.Enemies.Bat {
 	public partial class Bat : BaseEntity.BaseEntity {
-		protected Vector2 _direction;
+		protected Vector2 Direction;
 
 		public override void Unfreeze() {
 			base.Unfreeze();
-			_direction = GetRandomDirection();
+			Direction = GetRandomDirection();
 		}
 
 		public override void _Ready() {
 			base._Ready();
-			_direction = GetRandomDirection();
+			Direction = GetRandomDirection();
 		}
 
 		private Vector2 GetRandomDirection() {
@@ -28,14 +28,24 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 				AnimationPlayer.Stop();
 			}
 			else {
-				//GD.Print(Position);
 				AnimationPlayer.Play();
-				MoveAndSlide(_direction * 16);
-				if (IsOnWall()) {
-					_direction = GetRandomDirection();
-				}
 			}
 			base._Process(delta);
+			if (IsOnWall()) {
+				Direction = GetRandomDirection();
+			}
+		}
+
+		public override void Damage(Vector2 direction) {
+			base.Damage(direction);
+			const float variance = 0.25f;
+			const float varianceRadians = 2 * Mathf.Pi * variance;
+			var delta = (GD.Randf() * varianceRadians) - (varianceRadians / 2.0f);
+			Direction = direction.Rotated(delta);
+		}
+
+		protected override Vector2 GetVelocity() {
+			return Direction * 16;
 		}
 	}
 }

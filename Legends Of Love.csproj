@@ -63,6 +63,7 @@
     <Compile Include="Entities\Enemies\Bat\Bat.cs" />
     <Compile Include="Entities\Enemies\Bat\Bat.designer.cs" />
     <Compile Include="Entities\Hammer\Hammer.cs" />
+    <Compile Include="Entities\IDamageable.cs" />
     <Compile Include="Entities\IHammerable.cs" />
     <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\IPushable.cs" />
