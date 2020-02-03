@@ -73,9 +73,12 @@
     <Compile Include="Entities\IPushable.cs" />
     <Compile Include="Entities\Items\Hammer\Hammer.cs" />
     <Compile Include="Entities\Items\Heart\Heart.cs" />
+    <Compile Include="Entities\Items\Keys\Key1.cs" />
     <Compile Include="Entities\Items\MaxHealthUp\MaxHealthUp.cs" />
     <Compile Include="Entities\Items\Sword\Sword.cs" />
+    <Compile Include="Entities\LockedBlock\LockedBlock.cs" />
     <Compile Include="Entities\Player\HUD\HeartContainer.cs" />
+    <Compile Include="Entities\Player\HUD\Key1Indicator.cs" />
     <Compile Include="Entities\Player\Player.cs" />
     <Compile Include="Entities\Player\Player.designer.cs" />
     <Compile Include="Entities\Player\PlayerAnimation.cs" />

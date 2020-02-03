@@ -9,6 +9,8 @@ namespace LegendsOfLove.Entities.Player {
 
 		[Export] public bool HasSword { get; set; }
 		[Export] public bool HasHammer { get; set; }
+		[Export] public bool HasKey1 { get; set; }
+
 		[Export] public float Speed = 16.0f;
 		[Export] public bool UpdateAnimation { get; set; } = true;
 
@@ -107,6 +109,7 @@ namespace LegendsOfLove.Entities.Player {
 		}
 
 		public override void OnDeath() {
+			base.OnDeath();
 			UpdateAnimation = false;
 			Gravestone.Visible = true;
 			ResetPlayerTween.RemoveAll();
@@ -142,11 +145,10 @@ namespace LegendsOfLove.Entities.Player {
 
 		public override void Reset() {
 			base.Reset();
-			GD.Print("reset " + new StackTrace());
 			Gravestone.Visible = false;
 			UpdateAnimation = true;
 		}
-		
+
 		public override void OnKnockbackEnd() {
 			Velocity = Vector2.Zero;
 			if (!IsAlive) {

@@ -3,9 +3,10 @@ using LegendsOfLove.Entities.Items.Heart;
 
 namespace LegendsOfLove.Entities.BaseEntity {
 	public partial class BaseEntity : KinematicBody2D, IDamageable {
+		[Signal] public delegate void Death();
 		[Export] public bool DropHeartOnDeath { get; set; }
 		[Export] public bool CanBeDamaged { get; set; }
-		[Export]  public int MaxHealth { get; set; } = 2;
+		[Export] public int MaxHealth { get; set; } = 2;
 		public int Health { get; set; } = 2;
 		public bool IsInvulnerable { get; set; }
 		public bool IsAlive => !CanBeDamaged || Health > 0;
@@ -96,6 +97,7 @@ namespace LegendsOfLove.Entities.BaseEntity {
 		}
 
 		public virtual void OnDeath() {
+			EmitSignal(nameof(Death));
 			if (DropHeartOnDeath && (GD.Randi() % 4) == 0) {
 				var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
 				GetParent().AddChild(heart);

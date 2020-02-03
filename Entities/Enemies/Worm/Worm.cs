@@ -84,6 +84,7 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 		}
 
 		public override void OnDeath() {
+			base.OnDeath();
 			var heart = (MaxHealthUp)ResourceLoader.Load<PackedScene>("res://Entities/Items/MaxHealthUp/MaxHealthUp.tscn").Instance();
 			GetParent().AddChild(heart);
 			heart.Position = Position;

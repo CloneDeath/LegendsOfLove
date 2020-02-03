@@ -4,7 +4,7 @@
 [ext_resource path="res://Entities/Enemies/Slime/GiantSlime.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Enemies/Slime/GiantSlime.cs" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 radius = 8.67676
 
 [sub_resource type="Animation" id=2]
@@ -114,6 +114,10 @@ tracks/0/keys = {
 collision_layer = 2
 collision_mask = 197
 script = ExtResource( 3 )
+CanBeDamaged = true
+MaxHealth = 8
+DoesNotReset = true
+Speed = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -126,7 +130,7 @@ texture = ExtResource( 1 )
 hframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.3

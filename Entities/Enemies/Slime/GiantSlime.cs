@@ -1,11 +1,12 @@
 using Godot;
-using LegendsOfLove.Entities.Items.Heart;
+using LegendsOfLove.Entities.Items.Keys;
 
 namespace LegendsOfLove.Entities.Enemies.Slime {
 	public class GiantSlime : Slime
 	{
 		public override void OnDeath() {
-			var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
+			base.OnDeath();
+			var heart = (Key1)ResourceLoader.Load<PackedScene>("res://Entities/Items/Keys/Key1.tscn").Instance();
 			GetParent().AddChild(heart);
 			heart.Position = Position;
 			QueueFree();

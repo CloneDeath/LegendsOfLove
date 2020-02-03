@@ -1,7 +1,7 @@
 using Godot;
 
 namespace LegendsOfLove.Entities.Enemies.Slime {
-	public partial class Slime : BaseEntity.BaseEntity {
+	public partial class Slime : BaseEntity.BaseEntity, IHammerable {
 		private float _changeDirection;
 		private Vector2 _direction;
 
@@ -40,6 +40,10 @@ namespace LegendsOfLove.Entities.Enemies.Slime {
 		private void RandomizeDirection() {
 			_direction = GetRandomDirection();
 			_changeDirection = GD.Randi() % 2 + 3;
+		}
+
+		public void Hammer(Vector2 direction) {
+			Damage(direction);
 		}
 	}
 }
