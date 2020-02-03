@@ -15,14 +15,6 @@ namespace LegendsOfLove.Entities.Player {
 
 		protected PlayerInput PlayerInput => new PlayerInput(IsFrozen || DisableInput);
 
-		public override void _Ready() {
-			base._Ready();
-
-			ResetPlayerTween.InterpolateCallback(this, 0.5f, nameof(MakeGravestoneVisible));
-			ResetPlayerTween.InterpolateCallback(this, 1f, nameof(TeleportTo), InitialPosition);
-			ResetPlayerTween.InterpolateCallback(this, 1.5f, nameof(Reset));
-		}
-
 		protected void MakeGravestoneVisible() {
 			Gravestone.Visible = true;
 		}
@@ -121,6 +113,10 @@ namespace LegendsOfLove.Entities.Player {
 		public override void OnKnockbackEnd() {
 			base.OnKnockbackEnd();
 			if (!IsAlive) {
+				ResetPlayerTween.RemoveAll();
+				ResetPlayerTween.InterpolateCallback(this, 0.5f, nameof(MakeGravestoneVisible));
+				ResetPlayerTween.InterpolateCallback(this, 1f, nameof(TeleportTo), InitialPosition);
+				ResetPlayerTween.InterpolateCallback(this, 1.5f, nameof(Reset));
 				ResetPlayerTween.Start();
 			}
 		}

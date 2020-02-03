@@ -62,7 +62,6 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 			}
 			Tween.InterpolateDeferredCallback(this, 1, nameof(UnfreezeNew));
 
-
 			player.Freeze();
 			Tween.Start();
 		}
@@ -79,9 +78,20 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 
 		public void _on_ContentsArea2D_body_exited(Node body) {
 			if (body is Player player) {
+				var oldEntities = GetCurrentEntitiesOnScreen();
+				foreach (var entity in oldEntities) {
+					entity.Freeze();
+					entity.Reset();
+				}
+				
 				var playerPosition = player.GlobalPosition;
 				var playerCell = new Vector2(playerPosition.x / 72, playerPosition.y / 48).Floor();
 				GlobalPosition = playerCell * new Vector2(72, 48);
+				
+				var newEntities = GetCurrentEntitiesOnScreen();
+				foreach (var entity in newEntities) {
+					entity.Unfreeze();
+				}
 			}
 		}
 	}
