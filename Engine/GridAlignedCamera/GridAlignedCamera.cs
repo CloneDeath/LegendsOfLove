@@ -34,7 +34,9 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 		protected bool CanTransition => !Tween.IsActive();
 
 		protected List<BaseEntity> GetCurrentEntitiesOnScreen() {
-			return ResetArea2D.GetOverlappingBodies().Cast<BaseEntity>().ToList();
+			var rect = new Rect2(GlobalPosition, 72, 48);
+			var entities = GetTree().GetNodesInGroup("entity").Cast<BaseEntity>();
+			return entities.Where(entity => rect.HasPoint(entity.GlobalPosition)).ToList();
 		}
 
 		protected void Transition(Vector2 direction, Player player) {
@@ -55,6 +57,7 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 			Tween.InterpolateCallback(player, 1, nameof(player.Unfreeze));
 
 			foreach (var entity in oldEntities) {
+				if (entity.DoesNotReset) continue;
 				Tween.InterpolateCallback(entity, 1, nameof(entity.Reset));
 			}
 			Tween.InterpolateDeferredCallback(this, 1, nameof(UnfreezeNew));
@@ -67,8 +70,7 @@ namespace LegendsOfLove.Engine.GridAlignedCamera {
 		public void UnfreezeNew() {
 			var newEntities = GetCurrentEntitiesOnScreen();
 			foreach (var entity in newEntities) {
-				var rect = new Rect2(ResetArea2D.GlobalPosition, 72, 48);
-				if (rect.HasPoint(entity.GlobalPosition)) entity.Unfreeze();
+				entity.Unfreeze();
 			}
 		}
 

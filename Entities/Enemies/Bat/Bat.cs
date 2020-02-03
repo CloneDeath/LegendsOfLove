@@ -1,7 +1,7 @@
 using Godot;
 
 namespace LegendsOfLove.Entities.Enemies.Bat {
-	public partial class Bat : BaseEntity.BaseEntity {
+	public partial class Bat : BaseEntity.BaseEntity, IHammerable {
 		protected Vector2 Direction;
 
 		public override void Unfreeze() {
@@ -46,6 +46,10 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 
 		protected override Vector2 GetVelocity() {
 			return Direction * 24;
+		}
+
+		public void Hammer(Vector2 direction) {
+			Damage(direction);
 		}
 	}
 }

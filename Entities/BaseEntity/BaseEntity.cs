@@ -13,10 +13,15 @@ namespace LegendsOfLove.Entities.BaseEntity {
 		public virtual void Unfreeze() => IsFrozen = false;
 
 		protected Vector2 InitialPosition { get; set; }
+		protected uint InitialCollisionLayer { get; set; }
+		protected uint InitialCollisionMask { get; set; }
 		protected Vector2 Velocity { get; set; }
+		[Export] public bool DoesNotReset { get; set; }
 
 		public override void _Ready() {
 			InitialPosition = Position;
+			InitialCollisionLayer = CollisionLayer;
+			InitialCollisionMask = CollisionMask;
 			Reset();
 		}
 
@@ -43,6 +48,8 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			Health = MaxHealth;
 			Sprite.Visible = true;
 			DeathSprite.Visible = false;
+			CollisionLayer = InitialCollisionLayer;
+			CollisionMask = InitialCollisionMask;
 		}
 
 		public virtual void Damage(Vector2 direction) {
@@ -61,6 +68,8 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			Velocity = Vector2.Zero;
 			if (!IsAlive) {
 				KnockbackAnimation.Play("Death");
+				CollisionLayer = 0;
+				CollisionMask = 0;
 			}
 		}
 

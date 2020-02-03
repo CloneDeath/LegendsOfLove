@@ -1114,6 +1114,7 @@ collision_layer = 1
 collision_mask = 6
 script = ExtResource( 3 )
 IsFrozen = false
+DoesNotReset = true
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
