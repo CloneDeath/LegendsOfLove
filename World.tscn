@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Environments/Overworld/CliffStairs.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Items/Sword/Sword.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Entities/Items/MaxHealthUp/MaxHealthUp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Entities/Enemies/Slime/Slime.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Entities/Enemies/Worm/Worm.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Entities/Enemies/Slime/GiantSlime.tscn" type="PackedScene" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 7 )
@@ -224,6 +225,9 @@ position = Vector2( 339, 87 )
 
 [node name="Slime" parent="CaveTiles" instance=ExtResource( 18 )]
 position = Vector2( 189, 69 )
+
+[node name="GiantSlime" parent="CaveTiles" instance=ExtResource( 20 )]
+position = Vector2( 327, 15 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 36, 30 )

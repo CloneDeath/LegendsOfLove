@@ -29,8 +29,8 @@ namespace LegendsOfLove.Entities.BaseEntity {
 
 		public override void _Process(float delta) {
 			if (!IsFrozen) {
-				MoveAndSlide(Velocity.Length() > 0 
-					? Velocity 
+				MoveAndSlide(Velocity.Length() > 0
+					? Velocity
 					: (IsAlive ? GetVelocity() : Vector2.Zero));
 			}
 

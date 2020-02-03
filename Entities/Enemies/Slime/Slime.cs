@@ -5,13 +5,15 @@ namespace LegendsOfLove.Entities.Enemies.Slime {
 		private float _changeDirection;
 		private Vector2 _direction;
 
+		[Export] public float Speed = 4.0f;
+
 		public override void Reset() {
 			base.Reset();
 			RandomizeDirection();
 		}
 
 		protected override Vector2 GetVelocity() {
-			return _direction.Normalized() * 4.0f;
+			return _direction.Normalized() * Speed;
 		}
 
 		public override void _Process(float delta) {

@@ -62,6 +62,7 @@
     <Compile Include="Entities\Door\Door.cs" />
     <Compile Include="Entities\Enemies\Bat\Bat.cs" />
     <Compile Include="Entities\Enemies\Bat\Bat.designer.cs" />
+    <Compile Include="Entities\Enemies\Slime\GiantSlime.cs" />
     <Compile Include="Entities\Enemies\Slime\Slime.cs" />
     <Compile Include="Entities\Enemies\Slime\Slime.designer.cs" />
     <Compile Include="Entities\Enemies\Worm\Worm.cs" />
