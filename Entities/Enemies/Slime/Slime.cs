@@ -11,7 +11,7 @@ namespace LegendsOfLove.Entities.Enemies.Slime {
 		}
 
 		protected override Vector2 GetVelocity() {
-			return _direction.Normalized() * 1.0f;
+			return _direction.Normalized() * 4.0f;
 		}
 
 		public override void _Process(float delta) {
