@@ -38,17 +38,11 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 
 		public override void Damage(Vector2 direction) {
 			base.Damage(direction);
-			GD.Print("Hello 001");
 
 			const float variance = 0.25f;
 			const float varianceRadians = 2 * Mathf.Pi * variance;
-			GD.Print("Hello 002");
-
 			var delta = (((GD.Randi() % 100)/100.0f) * varianceRadians) - (varianceRadians / 2.0f);
-			GD.Print("Hello 003");
-
 			Direction = direction.Rotated(delta);
-			GD.Print("Hello 004");
 		}
 
 		protected override Vector2 GetVelocity() {
