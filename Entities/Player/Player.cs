@@ -13,8 +13,19 @@ namespace LegendsOfLove.Entities.Player {
 
 		protected Vector2 Facing { get; set; } = Vector2.Right;
 
-
 		protected PlayerInput PlayerInput => new PlayerInput(IsFrozen || DisableInput);
+
+		public override void _Ready() {
+			base._Ready();
+
+			ResetPlayerTween.InterpolateCallback(this, 0.5f, nameof(MakeGravestoneVisible));
+			ResetPlayerTween.InterpolateCallback(this, 1f, nameof(TeleportTo), InitialPosition);
+			ResetPlayerTween.InterpolateCallback(this, 1.5f, nameof(Reset));
+		}
+
+		protected void MakeGravestoneVisible() {
+			Gravestone.Visible = true;
+		}
 
 		public override void _Process(float delta) {
 			if (IsFrozen) {
@@ -46,6 +57,11 @@ namespace LegendsOfLove.Entities.Player {
 					}
 				}
 			}
+		}
+
+		protected override void SnapSpriteToGrid() {
+			base.SnapSpriteToGrid();
+			Gravestone.GlobalPosition = GlobalPosition.Round();
 		}
 
 		protected override Vector2 GetVelocity() {
@@ -96,6 +112,19 @@ namespace LegendsOfLove.Entities.Player {
 			itemPickup.OnPickup(this);
 		}
 
+		public void _on_EnemyDetector_body_entered(Node other) {
+			if (!(other is BaseEntity.BaseEntity enemy)) return;
+			var direction = enemy.GlobalPosition.DirectionTo(GlobalPosition);
+			Damage(direction);
+		}
+
+		public override void OnKnockbackEnd() {
+			base.OnKnockbackEnd();
+			if (!IsAlive) {
+				ResetPlayerTween.Start();
+			}
+		}
+
 		public new void SetGlobalPosition(Vector2 destination) {
 			GlobalPosition = destination;
 		}
@@ -119,6 +148,11 @@ namespace LegendsOfLove.Entities.Player {
 				if (!(node is IHammerable hammerable)) continue;
 				hammerable.Hammer(Facing);
 			}
+		}
+
+		public override void Reset() {
+			base.Reset();
+			Gravestone.Visible = false;
 		}
 	}
 }

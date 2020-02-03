@@ -33,10 +33,11 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			SnapSpriteToGrid();
 		}
 
-		protected void SnapSpriteToGrid() {
+		protected virtual void SnapSpriteToGrid() {
 			Sprite.GlobalPosition = GlobalPosition.DistanceTo(Sprite.GlobalPosition) > 0.7
 				? GlobalPosition.Round()
 				: Sprite.GlobalPosition.Round();
+			DeathSprite.GlobalPosition = GlobalPosition.Round();
 		}
 
 		protected virtual Vector2 GetVelocity() {
@@ -64,7 +65,7 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			Health -= 1;
 		}
 
-		public void ClearVelocity() {
+		public virtual void OnKnockbackEnd() {
 			Velocity = Vector2.Zero;
 			if (!IsAlive) {
 				KnockbackAnimation.Play("Death");
