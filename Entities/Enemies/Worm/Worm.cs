@@ -1,4 +1,5 @@
 using Godot;
+using LegendsOfLove.Entities.Items.MaxHealthUp;
 
 namespace LegendsOfLove.Entities.Enemies.Worm {
 	public partial class Worm : BaseEntity.BaseEntity, IHammerable
@@ -22,6 +23,12 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 		protected override Vector2 GetVelocity() {
 			if (IsRising || IsDigging) return Vector2.Zero;
 			var speed = IsAboveGround ? 12.0f : 4.0f;
+			if (Health < 4) {
+				speed = IsAboveGround ? 14.0f : 8.0f;
+			}
+			else if (Health < 2) {
+				speed = IsAboveGround ? 18.0f : 24.0f;
+			}
 			return _direction.Normalized() * speed;
 		}
 
@@ -68,15 +75,19 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 		public override void Damage(Vector2 direction) {
 			if (IsBelowGround || IsDigging) return;
 			base.Damage(direction);
-
-			if (IsBelowGround) {
-				_modeChange = 0;
-			}
+			_modeChange -= 5;
 		}
 
 		public void Hammer(Vector2 direction) {
 			base.Damage(direction);
-			_modeChange = 0;
+			if (IsBelowGround) _modeChange = 0;
+		}
+
+		public override void OnDeath() {
+			var heart = (MaxHealthUp)ResourceLoader.Load<PackedScene>("res://Entities/Items/MaxHealthUp/MaxHealthUp.tscn").Instance();
+			GetParent().AddChild(heart);
+			heart.Position = Position;
+			QueueFree();
 		}
 	}
 }

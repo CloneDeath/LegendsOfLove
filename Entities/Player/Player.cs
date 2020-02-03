@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Godot;
 using LegendsOfLove.Engine.GridAlignedCamera;
 
@@ -14,10 +15,6 @@ namespace LegendsOfLove.Entities.Player {
 		protected Vector2 Facing { get; set; } = Vector2.Right;
 
 		protected PlayerInput PlayerInput => new PlayerInput(IsFrozen || DisableInput);
-
-		protected void MakeGravestoneVisible() {
-			Gravestone.Visible = true;
-		}
 
 		public override void _Process(float delta) {
 			if (IsFrozen) {
@@ -109,16 +106,13 @@ namespace LegendsOfLove.Entities.Player {
 			Damage(direction);
 		}
 
-		public override void OnKnockbackEnd() {
-			base.OnKnockbackEnd();
-			if (!IsAlive) {
-				ResetPlayerTween.RemoveAll();
-				UpdateAnimation = false;
-				ResetPlayerTween.InterpolateCallback(this, 0.5f, nameof(MakeGravestoneVisible));
-				ResetPlayerTween.InterpolateCallback(this, 1f, nameof(TeleportTo), InitialPosition);
-				ResetPlayerTween.InterpolateCallback(this, 1.5f, nameof(Reset));
-				ResetPlayerTween.Start();
-			}
+		public override void OnDeath() {
+			UpdateAnimation = false;
+			Gravestone.Visible = true;
+			ResetPlayerTween.RemoveAll();
+			ResetPlayerTween.InterpolateCallback(this, 0.5f, nameof(TeleportTo), InitialPosition);
+			ResetPlayerTween.InterpolateCallback(this, 1.0f, nameof(Reset));
+			ResetPlayerTween.Start();
 		}
 
 		public new void SetGlobalPosition(Vector2 destination) {
@@ -148,8 +142,16 @@ namespace LegendsOfLove.Entities.Player {
 
 		public override void Reset() {
 			base.Reset();
+			GD.Print("reset " + new StackTrace());
 			Gravestone.Visible = false;
 			UpdateAnimation = true;
+		}
+		
+		public override void OnKnockbackEnd() {
+			Velocity = Vector2.Zero;
+			if (!IsAlive) {
+				KnockbackAnimation.Play("Death");
+			}
 		}
 	}
 }

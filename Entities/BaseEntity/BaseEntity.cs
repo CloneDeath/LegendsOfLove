@@ -75,12 +75,6 @@ namespace LegendsOfLove.Entities.BaseEntity {
 				KnockbackAnimation.Play("Death");
 				CollisionLayer = 0;
 				CollisionMask = 0;
-				
-				if (DropHeartOnDeath && !IsAlive && (GD.Randi() % 4) == 0) {
-					var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
-					GetParent().AddChild(heart);
-					heart.Position = Position;
-				}
 			}
 		}
 
@@ -98,6 +92,14 @@ namespace LegendsOfLove.Entities.BaseEntity {
 				case 5: return Vector2.Right;
 				case 6: return Vector2.Down;
 				default: return Vector2.Left;
+			}
+		}
+
+		public virtual void OnDeath() {
+			if (DropHeartOnDeath && (GD.Randi() % 4) == 0) {
+				var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
+				GetParent().AddChild(heart);
+				heart.Position = Position;
 			}
 		}
 	}
