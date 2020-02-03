@@ -41,6 +41,9 @@ texture = ExtResource( 1 )
 position = Vector2( -33, -78 )
 texture = ExtResource( 3 )
 
+[node name="MaxHealthUp" parent="OverworldTiles" instance=ExtResource( 17 )]
+position = Vector2( -39, 36 )
+
 [node name="Waves" type="Node2D" parent="OverworldTiles"]
 position = Vector2( -60, 48 )
 
@@ -97,9 +100,6 @@ shape = SubResource( 1 )
 
 [node name="D1_Destination" type="Position2D" parent="OverworldTiles"]
 position = Vector2( -33, -65 )
-
-[node name="MaxHealthUp" parent="OverworldTiles" instance=ExtResource( 17 )]
-position = Vector2( -39, 39 )
 
 [node name="Boulder" parent="OverworldTiles" instance=ExtResource( 14 )]
 position = Vector2( -24, 17 )
@@ -193,5 +193,8 @@ position = Vector2( 339, 87 )
 position = Vector2( 36, 30 )
 
 [node name="GridAlignedCamera" parent="." instance=ExtResource( 5 )]
+
+[node name="Bat" parent="." instance=ExtResource( 16 )]
+position = Vector2( 24, -24 )
 [connection signal="Pressed" from="CaveTiles/Room_Hammer/Switch" to="CaveTiles/Room_Hammer/Door" method="Activate"]
 [connection signal="Released" from="CaveTiles/Room_Hammer/Switch" to="CaveTiles/Room_Hammer/Door" method="Deactivate"]

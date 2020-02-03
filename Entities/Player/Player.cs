@@ -29,7 +29,7 @@ namespace LegendsOfLove.Entities.Player {
 
 			base._Process(delta);
 
-			if (!IsFrozen) {
+			if (!IsFrozen && IsAlive) {
 				// ReSharper disable once CompareOfFloatsByEqualityOperator
 				if (PlayerInput.MoveVector.Length() == 1) {
 					Facing = PlayerInput.MoveVector;
@@ -44,7 +44,6 @@ namespace LegendsOfLove.Entities.Player {
 				if (DamageArea.Monitoring) {
 					foreach (var body in DamageArea.GetOverlappingBodies()) {
 						if (!(body is IDamageable damageable)) continue;
-						//var dir = GlobalPosition.DirectionTo(((Node2D) body).GlobalPosition);
 						damageable.Damage(Facing);
 					}
 				}
@@ -114,6 +113,7 @@ namespace LegendsOfLove.Entities.Player {
 			base.OnKnockbackEnd();
 			if (!IsAlive) {
 				ResetPlayerTween.RemoveAll();
+				UpdateAnimation = false;
 				ResetPlayerTween.InterpolateCallback(this, 0.5f, nameof(MakeGravestoneVisible));
 				ResetPlayerTween.InterpolateCallback(this, 1f, nameof(TeleportTo), InitialPosition);
 				ResetPlayerTween.InterpolateCallback(this, 1.5f, nameof(Reset));
@@ -149,6 +149,7 @@ namespace LegendsOfLove.Entities.Player {
 		public override void Reset() {
 			base.Reset();
 			Gravestone.Visible = false;
+			UpdateAnimation = true;
 		}
 	}
 }

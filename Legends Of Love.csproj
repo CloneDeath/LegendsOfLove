@@ -67,6 +67,7 @@
     <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\IPushable.cs" />
     <Compile Include="Entities\Items\Hammer\Hammer.cs" />
+    <Compile Include="Entities\Items\Heart\Heart.cs" />
     <Compile Include="Entities\Items\MaxHealthUp\MaxHealthUp.cs" />
     <Compile Include="Entities\Items\Sword\Sword.cs" />
     <Compile Include="Entities\Player\HUD\HeartContainer.cs" />
