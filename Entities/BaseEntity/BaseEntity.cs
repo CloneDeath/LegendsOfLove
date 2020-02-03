@@ -3,8 +3,8 @@ using Godot;
 namespace LegendsOfLove.Entities.BaseEntity {
 	public partial class BaseEntity : KinematicBody2D {
 		[Export] public bool IsFrozen { get; set; }
-		public void Freeze() => IsFrozen = true;
-		public void Unfreeze() => IsFrozen = false;
+		public virtual void Freeze() => IsFrozen = true;
+		public virtual void Unfreeze() => IsFrozen = false;
 
 		protected Vector2 InitialPosition { get; set; }
 
