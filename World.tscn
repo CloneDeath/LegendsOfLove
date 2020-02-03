@@ -224,6 +224,8 @@ position = Vector2( 189, 69 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 36, 30 )
+HasSword = true
+HasHammer = true
 
 [node name="GridAlignedCamera" parent="." instance=ExtResource( 5 )]
 

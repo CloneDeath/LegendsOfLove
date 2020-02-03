@@ -16,16 +16,18 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 		public override void Reset() {
 			base.Reset();
 			RandomizeDirection();
+			Animation.Play("Above");
 		}
 
 		protected override Vector2 GetVelocity() {
 			if (IsRising || IsDigging) return Vector2.Zero;
-			var speed = IsAboveGround ? 16.0f : 4.0f;
+			var speed = IsAboveGround ? 12.0f : 4.0f;
 			return _direction.Normalized() * speed;
 		}
 
 		public override void _Process(float delta) {
 			base._Process(delta);
+
 
 			if (IsFrozen) {
 				Animation.Stop();
@@ -35,6 +37,9 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 			}
 
 			if (!IsFrozen) {
+				if (IsOnWall()) {
+					_direction = GetRandomDirection();
+				}
 				_changeDirection -= delta;
 				if (_changeDirection <= 0) {
 					RandomizeDirection();
@@ -63,7 +68,10 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 		public override void Damage(Vector2 direction) {
 			if (IsBelowGround || IsDigging) return;
 			base.Damage(direction);
-			_modeChange = 0;
+
+			if (IsBelowGround) {
+				_modeChange = 0;
+			}
 		}
 
 		public void Hammer(Vector2 direction) {

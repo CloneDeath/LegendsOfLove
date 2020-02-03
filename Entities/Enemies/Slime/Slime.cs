@@ -25,6 +25,9 @@ namespace LegendsOfLove.Entities.Enemies.Slime {
 			}
 
 			if (!IsFrozen) {
+				if (IsOnWall()) {
+					_direction = GetRandomDirection();
+				}
 				_changeDirection -= delta;
 				if (_changeDirection <= 0) {
 					RandomizeDirection();

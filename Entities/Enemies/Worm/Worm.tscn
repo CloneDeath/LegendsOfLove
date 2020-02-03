@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
-height = 5.0
+height = 0.642574
 
 [sub_resource type="Animation" id=2]
 resource_name = "Above"
@@ -24,6 +24,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:shape:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.523369, -0.523369 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Below"
@@ -40,6 +64,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:shape:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.642574 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -3.63588e-06, 3.45424 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -76,18 +124,21 @@ tracks/0/keys = {
 
 [node name="Worm" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+CanBeDamaged = true
+MaxHealth = 8
 
 [node name="Sprite" parent="." index="0"]
+visible = false
 texture = ExtResource( 2 )
 offset = Vector2( 0, -2 )
 hframes = 13
-frame = 8
+frame = 2
 
 [node name="DeathSprite" parent="." index="1"]
-frame = 4
+visible = true
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( 0.523369, -0.523369 )
+position = Vector2( -3.63588e-06, 3.45424 )
 shape = SubResource( 1 )
 
 [node name="Animation" type="AnimationPlayer" parent="." index="5"]

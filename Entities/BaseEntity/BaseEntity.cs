@@ -28,8 +28,10 @@ namespace LegendsOfLove.Entities.BaseEntity {
 		}
 
 		public override void _Process(float delta) {
-			if (!IsFrozen && IsAlive) {
-				MoveAndSlide(Velocity.Length() > 0 ? Velocity : GetVelocity());
+			if (!IsFrozen) {
+				MoveAndSlide(Velocity.Length() > 0 
+					? Velocity 
+					: (IsAlive ? GetVelocity() : Vector2.Zero));
 			}
 
 			SnapSpriteToGrid();
@@ -65,12 +67,6 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			InvulnerabilityTimer.Start();
 			KnockbackAnimation.Play("Knockback");
 			Health -= 1;
-
-			if (DropHeartOnDeath && !IsAlive && (GD.Randi() % 4) == 0) {
-				var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
-				GetParent().AddChild(heart);
-				heart.Position = Position;
-			}
 		}
 
 		public virtual void OnKnockbackEnd() {
@@ -79,6 +75,12 @@ namespace LegendsOfLove.Entities.BaseEntity {
 				KnockbackAnimation.Play("Death");
 				CollisionLayer = 0;
 				CollisionMask = 0;
+				
+				if (DropHeartOnDeath && !IsAlive && (GD.Randi() % 4) == 0) {
+					var heart = (Heart)ResourceLoader.Load<PackedScene>("res://Entities/Items/Heart/Heart.tscn").Instance();
+					GetParent().AddChild(heart);
+					heart.Position = Position;
+				}
 			}
 		}
 
