@@ -62,11 +62,13 @@
     <Compile Include="Entities\Door\Door.cs" />
     <Compile Include="Entities\Enemies\Bat\Bat.cs" />
     <Compile Include="Entities\Enemies\Bat\Bat.designer.cs" />
-    <Compile Include="Entities\Hammer\Hammer.cs" />
     <Compile Include="Entities\IDamageable.cs" />
     <Compile Include="Entities\IHammerable.cs" />
     <Compile Include="Entities\IItemPickup.cs" />
     <Compile Include="Entities\IPushable.cs" />
+    <Compile Include="Entities\Items\Hammer\Hammer.cs" />
+    <Compile Include="Entities\Items\MaxHealthUp\MaxHealthUp.cs" />
+    <Compile Include="Entities\Items\Sword\Sword.cs" />
     <Compile Include="Entities\Player\HUD\HeartContainer.cs" />
     <Compile Include="Entities\Player\Player.cs" />
     <Compile Include="Entities\Player\Player.designer.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="Entities\PushableBarrel\PushableBarrel.cs" />
     <Compile Include="Entities\PushableBarrel\PushableBarrel.designer.cs" />
     <Compile Include="Entities\Switch\Switch.cs" />
-    <Compile Include="Entities\Sword\Sword.cs" />
     <Compile Include="Entities\Teleporter\Teleporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Title\MainMenu.cs" />
