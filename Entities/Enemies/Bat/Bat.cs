@@ -45,7 +45,7 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 		}
 
 		protected override Vector2 GetVelocity() {
-			return Direction * 16;
+			return Direction * 24;
 		}
 	}
 }
