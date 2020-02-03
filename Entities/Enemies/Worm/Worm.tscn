@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
-height = 0.642574
+height = 5.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Above"
@@ -128,17 +128,15 @@ CanBeDamaged = true
 MaxHealth = 8
 
 [node name="Sprite" parent="." index="0"]
-visible = false
 texture = ExtResource( 2 )
 offset = Vector2( 0, -2 )
 hframes = 13
-frame = 2
 
 [node name="DeathSprite" parent="." index="1"]
 frame = 4
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( -3.63588e-06, 3.45424 )
+position = Vector2( 0.523369, -0.523369 )
 shape = SubResource( 1 )
 
 [node name="Animation" type="AnimationPlayer" parent="." index="5"]
