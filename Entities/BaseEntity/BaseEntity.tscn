@@ -112,11 +112,11 @@ collision_mask = 69
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 1 )
 offset = Vector2( 0, -2.5 )
 
 [node name="DeathSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 hframes = 5
 

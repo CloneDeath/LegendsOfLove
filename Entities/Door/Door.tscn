@@ -13,8 +13,12 @@ collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
+visible = true
 texture = ExtResource( 1 )
 offset = Vector2( 0, 0 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="DeathSprite" parent="." index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )
