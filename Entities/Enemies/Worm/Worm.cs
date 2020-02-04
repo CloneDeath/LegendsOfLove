@@ -2,8 +2,9 @@ using Godot;
 using LegendsOfLove.Entities.Items.MaxHealthUp;
 
 namespace LegendsOfLove.Entities.Enemies.Worm {
-	public partial class Worm : BaseEntity.BaseEntity, IHammerable
-	{
+	public partial class Worm : BaseEntity.BaseEntity, IHammerable {
+		[Export] public bool DropsMaxHeartOnDeath { get; set; } = true;
+		
 		protected bool IsAboveGround => Animation.CurrentAnimation == "Above";
 		protected bool IsBelowGround => Animation.CurrentAnimation == "Below";
 		protected bool IsDigging => Animation.CurrentAnimation == "Dig";
@@ -85,9 +86,12 @@ namespace LegendsOfLove.Entities.Enemies.Worm {
 
 		public override void OnDeath() {
 			base.OnDeath();
-			var heart = (MaxHealthUp)ResourceLoader.Load<PackedScene>("res://Entities/Items/MaxHealthUp/MaxHealthUp.tscn").Instance();
-			GetParent().AddChild(heart);
-			heart.Position = Position;
+
+			if (DropsMaxHeartOnDeath) {
+				var heart = (MaxHealthUp) ResourceLoader.Load<PackedScene>("res://Entities/Items/MaxHealthUp/MaxHealthUp.tscn").Instance();
+				GetParent().AddChild(heart);
+				heart.Position = Position;
+			}
 			QueueFree();
 		}
 	}

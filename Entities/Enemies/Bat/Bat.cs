@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace LegendsOfLove.Entities.Enemies.Bat {
@@ -7,12 +8,24 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 
 		public override void Unfreeze() {
 			base.Unfreeze();
-			Direction = GetRandomDirection();
+			RandomizeDirection();
 		}
 
 		public override void _Ready() {
 			base._Ready();
-			Direction = GetRandomDirection();
+			RandomizeDirection();
+		}
+
+		protected void RandomizeDirection() {
+			var player = GetTree().GetNodesInGroup("player").Cast<Player.Player>().FirstOrDefault();
+			
+			var delta = GetVariance();
+			if (GD.Randi() % 2 == 0 && player != null) {
+				Direction = GlobalPosition.DirectionTo(player.GlobalPosition).Rotated(delta);
+			}
+			else {
+				Direction = GetRandomDirection().Rotated(delta);
+			}
 		}
 
 		public override void _Process(float delta) {
@@ -28,12 +41,16 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 			}
 		}
 
+		protected float GetVariance() {
+			const float variance = 0.25f;
+			const float varianceRadians = 2 * Mathf.Pi * variance;
+			return (((GD.Randi() % 100)/100.0f) * varianceRadians) - (varianceRadians / 2.0f);
+		}
+
 		public override void Damage(Vector2 direction) {
 			base.Damage(direction);
 
-			const float variance = 0.25f;
-			const float varianceRadians = 2 * Mathf.Pi * variance;
-			var delta = (((GD.Randi() % 100)/100.0f) * varianceRadians) - (varianceRadians / 2.0f);
+			var delta = GetVariance();
 			Direction = direction.Rotated(delta);
 		}
 
@@ -42,6 +59,7 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 		}
 
 		public void Hammer(Vector2 direction) {
+			if (Health > 1) Health = 1;
 			Damage(direction);
 		}
 	}

@@ -6,6 +6,8 @@ namespace LegendsOfLove.Entities.Door {
 		[Export] public bool ActivationOpens { get; set; } = false;
 		[Export] public int ActivationThreshold { get; set; } = 1;
 
+		protected AudioStreamPlayer OpenSound => GetNode<AudioStreamPlayer>("OpenSound");
+
 		protected int ActivationLevel;
 
 		public override void _Process(float delta) {
@@ -15,12 +17,26 @@ namespace LegendsOfLove.Entities.Door {
 				Sprite.Visible = ActivationLevel < ActivationThreshold;
 				SetCollisionLayerBit(2, ActivationLevel < ActivationThreshold);
 				SetCollisionLayerBit(6, ActivationLevel < ActivationThreshold);
-				if (DeleteOnActivate && ActivationLevel >= ActivationThreshold) QueueFree();
+				if (ActivationLevel >= ActivationThreshold) {
+					if (DeleteOnActivate) {
+						var sound = OpenSound;
+						RemoveChild(sound);
+						GetParent().AddChild(sound);
+						sound.Play();
+						QueueFree();
+					}
+					else {
+						OpenSound.Play();
+					}
+				}
 			}
 			else {
 				Sprite.Visible = ActivationLevel >= ActivationThreshold;
 				SetCollisionLayerBit(2, ActivationLevel >= ActivationThreshold);
 				SetCollisionLayerBit(6, ActivationLevel >= ActivationThreshold);
+				if (ActivationLevel >= ActivationThreshold) {
+					OpenSound.Play();
+				}
 			}
 		}
 
