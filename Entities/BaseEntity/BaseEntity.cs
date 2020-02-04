@@ -68,6 +68,11 @@ namespace LegendsOfLove.Entities.BaseEntity {
 			InvulnerabilityTimer.Start();
 			KnockbackAnimation.Play("Knockback");
 			Health -= 1;
+			OnTakeDamage();
+		}
+
+		protected virtual void OnTakeDamage() {
+
 		}
 
 		public virtual void OnKnockbackEnd() {

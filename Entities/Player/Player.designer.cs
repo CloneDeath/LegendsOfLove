@@ -9,5 +9,7 @@ namespace LegendsOfLove.Entities.Player {
 		protected Area2D HammerArea => GetNode<Area2D>("HammerArea");
 		protected Area2D DamageArea => GetNode<Area2D>("DamageArea");
 		protected Tween ResetPlayerTween => GetNode<Tween>("ResetPlayerTween");
+		public AudioStreamPlayer PickupHeartSound => GetNode<AudioStreamPlayer>("PickupHeartSound");
+		public AudioStreamPlayer HitSound => GetNode<AudioStreamPlayer>("HitSound");
 	}
 }

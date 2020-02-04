@@ -44,7 +44,7 @@ namespace LegendsOfLove.Entities.Player {
 					foreach (var body in DamageArea.GetOverlappingBodies().Cast<Node>()) {
 						/* Allow sword to pick up items */
 						_on_ItemDetector_body_entered(body);
-						
+
 						if (!(body is IDamageable damageable)) continue;
 						damageable.Damage(Facing);
 					}
@@ -109,6 +109,10 @@ namespace LegendsOfLove.Entities.Player {
 			if (!(other is BaseEntity.BaseEntity enemy)) return;
 			var direction = enemy.GlobalPosition.DirectionTo(GlobalPosition);
 			Damage(direction);
+		}
+
+		protected override void OnTakeDamage() {
+			HitSound.Play();
 		}
 
 		public override void OnDeath() {

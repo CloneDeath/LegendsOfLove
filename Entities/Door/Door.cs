@@ -17,31 +17,30 @@ namespace LegendsOfLove.Entities.Door {
 				Sprite.Visible = ActivationLevel < ActivationThreshold;
 				SetCollisionLayerBit(2, ActivationLevel < ActivationThreshold);
 				SetCollisionLayerBit(6, ActivationLevel < ActivationThreshold);
-				if (ActivationLevel >= ActivationThreshold) {
-					if (DeleteOnActivate) {
-						var sound = OpenSound;
-						RemoveChild(sound);
-						GetParent().AddChild(sound);
-						sound.Play();
-						QueueFree();
-					}
-					else {
-						OpenSound.Play();
-					}
-				}
+
 			}
 			else {
 				Sprite.Visible = ActivationLevel >= ActivationThreshold;
 				SetCollisionLayerBit(2, ActivationLevel >= ActivationThreshold);
 				SetCollisionLayerBit(6, ActivationLevel >= ActivationThreshold);
-				if (ActivationLevel >= ActivationThreshold) {
-					OpenSound.Play();
-				}
 			}
 		}
 
 		public void Activate() {
 			ActivationLevel += 1;
+
+			if (ActivationLevel >= ActivationThreshold) {
+				if (DeleteOnActivate) {
+					var sound = OpenSound;
+					RemoveChild(sound);
+					GetParent().AddChild(sound);
+					sound.Play();
+					QueueFree();
+				}
+				else {
+					OpenSound.Play();
+				}
+			}
 		}
 
 		public void Deactivate() {

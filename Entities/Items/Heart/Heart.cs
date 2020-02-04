@@ -13,6 +13,7 @@ namespace LegendsOfLove.Entities.Items.Heart {
 
 		public void OnPickup(Player.Player player) {
 			player.Health = Math.Min(player.Health + 1, player.MaxHealth);
+			player.PickupHeartSound.Play();
 			QueueFree();
 		}
 	}
