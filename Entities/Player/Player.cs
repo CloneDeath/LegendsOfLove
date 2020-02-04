@@ -138,7 +138,7 @@ namespace LegendsOfLove.Entities.Player {
 			TeleportTween.InterpolateCallback(this, 0.5f, "SetGlobalPosition", destination);
 			TeleportTween.InterpolateCallback(Camera, 0.5f, "FadeIn");
 
-			TeleportTween.InterpolateCallback(this, 1.0f, "Unfreeze");
+			TeleportTween.InterpolateCallback(this, 1.0f, "AllowEverything");
 			TeleportTween.Start();
 		}
 
@@ -155,11 +155,16 @@ namespace LegendsOfLove.Entities.Player {
 			}
 		}
 
+		protected void AllowEverything() {
+			UpdateAnimation = true;
+			Unfreeze();
+			DisableInput = false;
+		}
+
 		public override void Reset() {
 			base.Reset();
 			Gravestone.Visible = false;
-			UpdateAnimation = true;
-			Unfreeze();
+			AllowEverything();
 		}
 
 		public override void OnKnockbackEnd() {
