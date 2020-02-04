@@ -6,6 +6,8 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 		[Export] public float Speed = 16f;
 		protected Vector2 Direction;
 
+		protected float _changeDirections;
+
 		public override void Unfreeze() {
 			base.Unfreeze();
 			RandomizeDirection();
@@ -17,6 +19,7 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 		}
 
 		protected void RandomizeDirection() {
+			_changeDirections = (GD.Randi() % 3) + 1;
 			var player = GetTree().GetNodesInGroup("player").Cast<Player.Player>().FirstOrDefault();
 			
 			var delta = GetVariance();
@@ -34,6 +37,10 @@ namespace LegendsOfLove.Entities.Enemies.Bat {
 			}
 			else {
 				AnimationPlayer.Play();
+				_changeDirections -= delta;
+				if (_changeDirections <= 0) {
+					RandomizeDirection();
+				}
 			}
 			base._Process(delta);
 			if (IsOnWall()) {

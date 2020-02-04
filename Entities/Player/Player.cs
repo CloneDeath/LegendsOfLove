@@ -159,6 +159,7 @@ namespace LegendsOfLove.Entities.Player {
 			base.Reset();
 			Gravestone.Visible = false;
 			UpdateAnimation = true;
+			Unfreeze();
 		}
 
 		public override void OnKnockbackEnd() {
