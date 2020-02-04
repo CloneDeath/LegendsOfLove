@@ -1,4 +1,12 @@
 NAME=legends_of_love
-zip $NAME-html5.zip -rj html5/*
-zip $NAME-windows.zip -rj windows/*
-zip $NAME-linux.zip -rj linux/*
+pushd html5
+zip -r $NAME-html5.zip ./*
+popd
+
+pushd windows
+zip -r $NAME-windows.zip ./*
+popd
+
+pushd linux
+zip -r $NAME-linux.zip ./*
+popd
