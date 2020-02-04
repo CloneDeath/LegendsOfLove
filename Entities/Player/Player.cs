@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Linq;
 using Godot;
 using LegendsOfLove.Engine.GridAlignedCamera;
 
@@ -41,7 +41,10 @@ namespace LegendsOfLove.Entities.Player {
 				UpdatePushing();
 
 				if (DamageArea.Monitoring) {
-					foreach (var body in DamageArea.GetOverlappingBodies()) {
+					foreach (var body in DamageArea.GetOverlappingBodies().Cast<Node>()) {
+						/* Allow sword to pick up items */
+						_on_ItemDetector_body_entered(body);
+						
 						if (!(body is IDamageable damageable)) continue;
 						damageable.Damage(Facing);
 					}
@@ -140,6 +143,11 @@ namespace LegendsOfLove.Entities.Player {
 			foreach (var node in nodes) {
 				if (!(node is IHammerable hammerable)) continue;
 				hammerable.Hammer(Facing);
+			}
+
+			/* Let player pick up items with the hammer */
+			foreach (var node in HammerArea.GetOverlappingBodies().Cast<Node>()) {
+				_on_ItemDetector_body_entered(node);
 			}
 		}
 
