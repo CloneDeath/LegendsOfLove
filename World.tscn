@@ -278,7 +278,7 @@ position = Vector2( 177, 171 )
 position = Vector2( 273, 63 )
 
 [node name="Bat3" parent="CaveTiles" instance=ExtResource( 16 )]
-position = Vector2( 309, 81 )
+position = Vector2( 327, 75 )
 
 [node name="Bat4" parent="CaveTiles" instance=ExtResource( 16 )]
 position = Vector2( 339, 87 )
