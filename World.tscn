@@ -358,6 +358,8 @@ DeleteOnActivate = true
 ActivationOpens = true
 ActivationThreshold = 2
 
+[node name="Puzzle2" type="Node2D" parent="TowerTiles/Floor1"]
+
 [node name="D2_Entrance" type="Position2D" parent="TowerTiles/Floor1"]
 position = Vector2( 36, 90 )
 
@@ -369,12 +371,13 @@ Destination = NodePath("../../../OverworldTiles/Tower/D2_Destination")
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 36, 30 )
+position = Vector2( 396, -258 )
 DisableInput = false
 HasHammer = true
 UpdateAnimation = true
 
 [node name="GridAlignedCamera" parent="." instance=ExtResource( 5 )]
+position = Vector2( 360, -288 )
 [connection signal="Death" from="CaveTiles/Worm" to="CaveTiles/FinalDoor" method="Activate"]
 [connection signal="Pressed" from="CaveTiles/Room_PuzzleHeart/Switch" to="CaveTiles/Room_PuzzleHeart/Door" method="Activate"]
 [connection signal="Released" from="CaveTiles/Room_PuzzleHeart/Switch" to="CaveTiles/Room_PuzzleHeart/Door" method="Deactivate"]

@@ -31,12 +31,5 @@ namespace LegendsOfLove.Entities.Door {
 		public void Deactivate() {
 			ActivationLevel -= 1;
 		}
-
-		public override void Reset() {
-			base.Reset();
-			if (!DoesNotReset) {
-				ActivationLevel = 0;
-			}
-		}
 	}
 }
