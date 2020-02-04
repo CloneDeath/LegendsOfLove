@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Environments/Overworld/CliffStairs.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Items/Sword/Sword.tscn" type="PackedScene" id=2]
@@ -28,6 +28,18 @@ extents = Vector2( 18, 7 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 18, 18 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6, 9 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 12 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 3, 6 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 6, 3 )
 
 [node name="World" type="Node2D"]
 __meta__ = {
@@ -246,6 +258,42 @@ position = Vector2( 183, 56 )
 position = Vector2( 111, 21 )
 texture = ExtResource( 22 )
 offset = Vector2( 0, -0.5 )
+
+[node name="Hole_1" type="StaticBody2D" parent="CaveTiles"]
+position = Vector2( 255, 57 )
+collision_layer = 68
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveTiles/Hole_1"]
+position = Vector2( 6, 9 )
+shape = SubResource( 3 )
+
+[node name="Hole_2" type="StaticBody2D" parent="CaveTiles"]
+position = Vector2( 255, 57 )
+collision_layer = 68
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveTiles/Hole_2"]
+position = Vector2( 6, 42 )
+shape = SubResource( 4 )
+
+[node name="Hole_3" type="StaticBody2D" parent="CaveTiles"]
+position = Vector2( 201, 165 )
+collision_layer = 68
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveTiles/Hole_3"]
+position = Vector2( 3, 6 )
+shape = SubResource( 5 )
+
+[node name="Hole_4" type="StaticBody2D" parent="CaveTiles"]
+position = Vector2( 159, 63 )
+collision_layer = 68
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveTiles/Hole_4"]
+position = Vector2( 6, 3 )
+shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 36, 30 )
