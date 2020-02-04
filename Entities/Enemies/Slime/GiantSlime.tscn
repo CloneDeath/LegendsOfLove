@@ -116,7 +116,6 @@ collision_mask = 197
 script = ExtResource( 3 )
 CanBeDamaged = true
 MaxHealth = 8
-DoesNotReset = true
 Speed = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
